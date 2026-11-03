@@ -1,0 +1,120 @@
+/* Schau- und Spiel-Werkstatt – Web-App
+   Für ein Kind, das nicht liest: keine Texte für sie, nur große Bilder zum Antippen.
+   Kleine graue Sätze (.fuer-mich) sind für Mama oder Papa. */
+:root {
+  --tinte: #1f2340;
+  --grau: #6b6f86;
+  --akzent: #7a4fd1;
+  --akzent-hell: #f1ebff;
+  --gold: #f2b705;
+  --gruen: #3aa356;
+  --karte: #ffffff;
+  --abstand: max(12px, env(safe-area-inset-left));
+  --tipp: 76px;            /* kleinste Tippfläche */
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body {
+  background: linear-gradient(#fbf9ff, var(--akzent-hell));
+  color: var(--tinte);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+button, .option, .kachel, svg { -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
+button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; }
+svg { display: block; width: 100%; height: 100%; }
+
+#app {
+  height: 100vh; height: 100dvh;
+  padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  display: flex; flex-direction: column; gap: 10px;
+}
+.fuer-mich { font-size: 14px; line-height: 1.3; color: var(--grau); margin: 0; text-align: center; }
+
+/* Leiste oben: Haus (zurück), Fortschritt, Für Erwachsene */
+.leiste { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex: none; }
+.knopf {
+  width: 56px; height: 56px; flex: none; padding: 8px; border-radius: 16px; background: var(--karte);
+  box-shadow: 0 2px 6px rgba(60, 40, 120, 0.15);
+}
+.knopf.klein { width: 48px; height: 48px; padding: 7px; opacity: 0.85; }
+.fortschritt { display: flex; gap: 8px; align-items: center; justify-content: center; flex: 1; }
+.fortschritt .punkt { width: 16px; height: 16px; border-radius: 50%; background: #d9d2ee; }
+.fortschritt .punkt.fertig { background: var(--gold); }
+.fortschritt .punkt.jetzt { background: var(--akzent); transform: scale(1.25); }
+
+/* Startseite: große Bild-Kacheln, eine pro Paket */
+.start-kopf { display: flex; justify-content: space-between; align-items: center; }
+.start-kopf .titel-bilder { display: flex; gap: 8px; height: 48px; }
+.start-kopf .titel-bilder > div { width: 48px; height: 48px; }
+.kacheln {
+  flex: 1; min-height: 0; display: grid; gap: 12px;
+  grid-template-columns: repeat(2, 1fr); grid-auto-rows: 1fr;
+}
+@media (orientation: landscape) { .kacheln { grid-template-columns: repeat(5, 1fr); grid-auto-rows: auto; align-content: center; } }
+.kachel {
+  background: var(--karte); border-radius: 22px; box-shadow: 0 3px 10px rgba(60, 40, 120, 0.15);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 10px;
+  min-height: var(--tipp); min-width: var(--tipp);
+}
+.kachel .bild { width: min(64%, 120px); aspect-ratio: 1; }
+.kachel .nummer { height: 26px; width: 26px; }
+.kachel .sterne { display: flex; gap: 2px; height: 14px; }
+.kachel .sterne > div { width: 14px; height: 14px; }
+
+/* Level: oben das gezeigte Bild, darunter die Antworten */
+.level { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 12px; }
+@media (orientation: landscape) { .level { flex-direction: row; align-items: center; } }
+.zeige { flex: 1 1 40%; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 12px; position: relative; }
+.zeige.leer { display: none; }
+.zeige .vorne { height: min(100%, 220px); aspect-ratio: 1; background: var(--karte); border-radius: 26px; padding: 14px; box-shadow: 0 3px 10px rgba(60, 40, 120, 0.15); transition: transform 0.45s ease, opacity 0.45s ease; }
+.zeige .schritte { position: absolute; bottom: -4px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+.zeige .schritte .s { width: 10px; height: 10px; border-radius: 50%; background: #d9d2ee; }
+.zeige .schritte .s.fertig { background: var(--gruen); }
+.optionen { flex: 1 1 60%; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.optionen.unten { align-items: center; }
+.option {
+  flex: 1 1 0; max-width: 220px; min-width: var(--tipp); min-height: var(--tipp); aspect-ratio: 1; max-height: 100%;
+  background: var(--karte); border-radius: 22px; padding: 10px; position: relative;
+  box-shadow: 0 3px 10px rgba(60, 40, 120, 0.15);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+/* Schmale Handys hochkant: vier Antworten als 2 · 2 */
+@media (orientation: portrait) and (max-width: 500px) {
+  .optionen.n4 { display: grid; grid-template-columns: repeat(2, auto); justify-content: center; align-content: center; }
+  .optionen.n4 .option { width: min(42vw, 21dvh, 200px); height: min(42vw, 21dvh, 200px); flex: none; }
+}
+.option.korb { aspect-ratio: 4 / 3; max-width: 240px; background: transparent; box-shadow: none; padding: 0; align-items: center; }
+.option .innen { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; }
+.option .innen > div { flex: none; }
+.option .nr { position: absolute; top: 6px; right: 6px; width: 26px; height: 26px; background: white; border-radius: 50%; padding: 2px; }
+.option.erledigt { opacity: 0.45; }
+.option.richtig { animation: huepfen 0.55s ease; box-shadow: 0 0 0 5px var(--gruen); }
+.option.falsch { animation: wackeln 0.45s ease; }
+@keyframes huepfen { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-16px); } }
+@keyframes wackeln { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-9px); } 75% { transform: translateX(9px); } }
+
+/* Stern nach jedem Level, Ende-Bild nach dem Paket */
+.stern-gross { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.stern-gross > div { width: min(50vw, 50vh); height: min(50vw, 50vh); animation: auf 0.5s ease; }
+@keyframes auf { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.ende { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; }
+.ende .bilder { display: flex; align-items: center; gap: 16px; height: min(34vh, 200px); }
+.ende .bilder > div { height: 100%; aspect-ratio: 1; }
+.ende .fuer-mich { font-size: 16px; max-width: 320px; }
+.ende .knopf { width: 84px; height: 84px; padding: 14px; }
+
+/* Für Erwachsene */
+.overlay { position: fixed; inset: 0; background: rgba(31, 35, 64, 0.55); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.overlay[hidden] { display: none; }
+.overlay .karte { background: white; border-radius: 18px; padding: 20px; max-width: 460px; width: 100%; max-height: 100%; overflow: auto; font-size: 16px; line-height: 1.45; }
+.overlay h2 { margin: 0 0 8px 0; font-size: 20px; color: var(--akzent); }
+.overlay input { font-size: 18px; width: 90px; padding: 8px; border: 2px solid #c9c2e3; border-radius: 10px; }
+.overlay .zeile { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 10px 0; }
+.overlay .knopf-text { background: var(--akzent); color: white; border-radius: 12px; padding: 10px 16px; min-height: 48px; font-weight: 700; }
+.overlay .knopf-text.hell { background: #ece7fa; color: var(--tinte); }
+.overlay small { color: var(--grau); }
+
+@media (prefers-reduced-motion: reduce) { .option.richtig, .option.falsch, .stern-gross > div { animation: none; } .zeige .vorne { transition: none; } }

@@ -1,0 +1,15 @@
+{
+  "name": "Schau- und Spiel-Werkstatt",
+  "short_name": "Schau-Werkstatt",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f1ebff",
+  "theme_color": "#f1ebff",
+  "icons": [
+    { "src": "icons/symbol-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/symbol-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/symbol.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

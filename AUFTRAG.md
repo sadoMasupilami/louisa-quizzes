@@ -6,13 +6,13 @@ Ein druckbarer Guide plus eine kleine Web-App, mit dem ich mit meiner jüngeren 
 
 > **Umfang jetzt:** Der Plan darf langfristig sein (20 Einheiten), **ausformuliert werden aber vorerst nur die Einheiten 1–5** (Guide und Web-Levels dazu). Nach diesen 5 Einheiten gebe ich eine Rückmeldung, und danach passen wir Plan, Schwierigkeit und Stil an.
 
-> **Vor dem Start bitte entscheiden.** Wo nichts angekreuzt ist, gilt der markierte Standard (☒).
+> **Entschieden:**
 >
-> 1. **Datenschutz** (Abschnitt 8): ☐ Variante A „Vorname darf im öffentlichen Repo stehen“ ☒ Variante B „Name nur lokal“ (Standard)
-> 2. **Schwerpunkt** (Abschnitt 2): ☒ Papier und Spiel zuerst, App als kurzer Bonus (Standard) ☐ App gleichwertig (mehr „Quiz“-Levels, trotzdem höchstens 10 Minuten)
-> 3. **Ton in der App** (Abschnitt 7): ☒ kein Ton, ich sitze daneben und sage die Aufgabe (Standard) ☐ Sprachausgabe des Geräts ☐ ich nehme die Aufgaben-Sätze selbst auf
-> 4. **Große Schwester** (Abschnitt 2): ☐ darf manchmal mitspielen (eigene Rolle: Roboter, Kobold, Spielleiterin) ☒ nur {{KIND}} und ich (Standard)
-> 5. **Interessen** (Abschnitt 1): bitte ankreuzen oder ergänzen
+> 1. **Datenschutz** (Abschnitt 8): ☐ Variante A ☒ **Variante B „Name nur lokal“**
+> 2. **Schwerpunkt** (Abschnitt 2): ☒ **Papier und Spiel zuerst**, mit viel Malen, Ausschneiden und Kleben. Die App ist ein kurzer Bonus.
+> 3. **Ton in der App** (Abschnitt 7): ☒ **kein Ton.** Ich sitze daneben und rede mit ihr, wir machen es gemeinsam.
+> 4. **Große Schwester** (Abschnitt 2): ☒ **darf gern manchmal mitspielen** (eigene Rolle: Roboter, Kobold, Spielleiterin). Jede Einheit geht auch ohne sie.
+> 5. **Interessen** (Abschnitt 1): ☒ **Tiere** ☒ **Fantasie**
 
 ---
 
@@ -22,20 +22,20 @@ Ein druckbarer Guide plus eine kleine Web-App, mit dem ich mit meiner jüngeren 
 |---|---|
 | Alter | **4 Jahre** (gerade geworden) |
 | Wo | Kindergarten, Österreich |
-| Zählen | zählt **ein bisschen** (sicher bis etwa 3–5, darüber noch unsicher). Mengen bis 3 erkennt sie vermutlich auf einen Blick. Ziffern kennt sie (noch) nicht sicher. Wird in Einheit 1 nebenbei eingeschätzt |
+| Zählen | **zählt bis über 10.** Ob sie dabei schon sicher auf jedes Ding genau einmal zeigt, wird in Einheit 1 nebenbei eingeschätzt. Ziffern kennt sie (noch) nicht sicher, Mengen stehen deshalb als Punkte da |
 | Lesen | **kann nicht lesen.** Kein Text auf ihren Blättern und in der App (Ausnahme: ihr Name, den ich dazuschreibe) |
-| Farben und Formen | ☐ kennt die Grundfarben ☐ kennt Kreis, Dreieck, Viereck ☐ noch unsicher. Wird in Einheit 1 eingeschätzt |
+| Farben und Formen | **kennt die Farben und Formen.** Nach Farbe sortieren ist deshalb nur der leichte Einstieg, gefordert wird mit Art, Wohnort, Größe und zwei Merkmalen auf einmal |
 | Links und rechts | **nein** (das ist mit 4 normal). Deshalb gibt es **keine Links-rechts-Befehle**, siehe Abschnitt 6 |
-| Stift und Schere | malt und kritzelt, Linien ziehen klappt grob. **Schneiden mache ich**, Kleben und Stempeln macht sie |
+| Stift und Schere | **malt gern und schneidet gern** (Kinderschere). Gerade, dicke Linien schneidet sie selbst, Feines schneide ich. Kleben und Stempeln macht sie |
 | Konzentration | etwa **10–15 Minuten** am Stück, mit Bewegung zwischendurch länger |
-| Interessen | ☐ Tiere ☐ Fantasie (Feen, Einhörner, Drachen) ☐ Fahrzeuge ☐ Essen und Kochen ☐ Natur und Garten ☐ Kuscheltiere ☐ … |
+| Interessen | **Tiere und Fantasie** (Einhörner, Drachen, Feen, Zauberer, Kobolde) |
 | Lieblings-Kuscheltier | (lokal in `kind.json` eintragen, kommt als Figur in die Anleitung, zum Beispiel „Das Kuscheltier ist heute der Roboter“) |
-| Motivation | ☐ Sticker ☐ Stempel ☐ Anmalen ☐ … |
+| Motivation | Sticker, Stempel, Anmalen |
 | Geschwister | eine große Schwester (6), die die Denk- und Programmier-Werkstatt macht. Figuren und Symbole dürfen gleich aussehen (der freundliche Fehler-Kobold, der Roboter), damit die zwei darüber reden können |
 
 ## 2. Rahmenbedingungen
 
-- **Wer:** {{KIND}} und ich (alle Spiele für 2 Personen). Wenn oben angekreuzt: die große Schwester darf bei einzelnen Spielen mitmachen, jede Einheit funktioniert aber ohne sie.
+- **Wer:** {{KIND}} und ich (alle Spiele für 2 Personen). Die große Schwester darf bei einzelnen Spielen mitmachen: Jede Einheit hat einen kleinen Kasten **„Mit der großen Schwester“** mit einer Rolle für sie (Roboter, Kobold, Spielleiterin). Jede Einheit funktioniert aber ohne sie.
 - **Wie oft:** **10–15 Minuten** gemeinsame Zeit, 2–3 Mal pro Woche. Lieber kurz und mit Lust als lang. **Aufhören ist jederzeit in Ordnung**, die Anleitung sagt, welcher Teil der wichtigste ist („Wenn nur Zeit für eins ist: das hier“).
 - **Vorbereitung ohne {{KIND}}** (ausdrucken, ausschneiden, Gitter am Boden kleben) steht getrennt mit Minuten. Sie soll höchstens 10 Minuten dauern.
 - **Medium:** vor allem **Körper, Material und Papier**. Bildschirm höchstens **5 Minuten pro Einheit**, am Schluss als Bonus, nie Pflicht. Jede Einheit funktioniert auch **komplett ohne Bildschirm**.
@@ -50,7 +50,7 @@ Ein druckbarer Guide plus eine kleine Web-App, mit dem ich mit meiner jüngeren 
   1. **Genau schauen und sortieren** (nach Farbe, Form, Größe, Art; was gehört nicht dazu)
   2. **Zuordnen** (Paare, Schatten, wer isst was, Mama-Tier und Baby-Tier)
   3. **Muster** (rot-blau-rot-blau fortsetzen, mit Perlen, Klatschen, Stampfen)
-  4. **Mengen und Zählen bis 5** (auf einen Blick, mit Fingern, Würfelbilder, eins-zu-eins zuordnen, mehr und weniger)
+  4. **Mengen und Zählen bis 10** (auf einen Blick, mit Fingern, Würfelbilder, eins-zu-eins zuordnen, mehr und weniger)
   5. **Reihenfolge** (erst das, dann das: Bildgeschichten mit 2–4 Karten)
   6. **Befehle und Wege** (Bild-Befehlskarten für den Körper, Pfeil-Wege auf einem großen Gitter, siehe Abschnitt 6)
   7. **Fehler finden** (der freundliche Fehler-Kobold hat etwas vertauscht)
@@ -82,10 +82,10 @@ Ein druckbarer Guide plus eine kleine Web-App, mit dem ich mit meiner jüngeren 
 - **Jedes Blatt passt auf genau eine A4-Seite**, mit **höchstens 3 Aufgaben**, sehr luftig
 - **Kein Text für {{KIND}}.** Was zu tun ist, zeigt ein **Aufgaben-Bild** links neben der Aufgabe (immer dasselbe, siehe Abschnitt 6): Stift = anmalen, Linie = verbinden, Kreis = einkreisen, Kleber = aufkleben, Finger = zeigen, Mund = sagen. Darunter klein und grau ein Satz **für mich** zum Vorlesen (er zählt nicht als Text für sie, weil sie ihn nicht lesen muss).
 - Oben ein großes **Gesicht oder Stern zum Anmalen** („Geschafft!“), Platz für ihren Namen, den ich hinschreibe
-- **Große, klare Bilder** (mindestens 3 cm), dicke Umrisse, wenig Details, nichts Gruseliges. Wo Farbe nicht wichtig ist: Umrisse zum Selber-Anmalen (spart Tinte, macht Spaß). Wo Farbe die Aufgabe ist (sortieren nach Farbe, Farbmuster): Farbdruck, und die Anleitung sagt das bei der Vorbereitung.
+- **Große, klare Bilder** (mindestens 2,5 cm), dicke Umrisse, wenig Details, nichts Gruseliges. Wo Farbe nicht wichtig ist: Umrisse zum Selber-Anmalen (spart Tinte, macht Spaß). Wo Farbe die Aufgabe ist (sortieren nach Farbe, Farbmuster): Farbdruck, und die Anleitung sagt das bei der Vorbereitung.
 - **Mengen als Punkte und Würfelbilder**, nicht als Ziffern. Ziffern höchstens klein daneben, als Angebot.
 - Wege und Gitter auf **großen Feldern** (mindestens 4 cm), damit ein Tier oder ein Muggelstein gut hineinpasst
-- Ausschneide-Karten mindestens 6 · 6 cm, dicke Schneidelinien, auf einem eigenen Blatt
+- **Ausschneide-Karten** mindestens 5 · 5 cm, mit dicker Schneidelinie, nur gerade Schnitte. {{KIND}} schneidet selbst, deshalb gern **Schneiden und Kleben** als Aufgabe (ausschneiden, dann in den richtigen Korb kleben)
 - Auf Blättern mit passendem Bildschirm-Bonus ein **QR-Code** zum Level-Paket (nur für mich zum Scannen): mindestens 2,5 cm breit, schwarz auf weiß, Ruhezone 4 Module, Fehlerkorrektur M, kurze Adresse (zum Beispiel `…/#e3`)
 
 ## 6. Sprache, Bilder und Symbole
@@ -113,7 +113,7 @@ Ein druckbarer Guide plus eine kleine Web-App, mit dem ich mit meiner jüngeren 
   - die Aufgaben-Bilder (anmalen, verbinden, einkreisen, aufkleben, zeigen, sagen, zuhören)
   - die Pfeile und die vier Seiten-Bilder für Wege
   - die Befehls-Karten für den Körper (hüpfen, klatschen, stampfen, drehen, hinsetzen, aufstehen, winken)
-  - eine **Bilder-Sammlung** (Tiere, Obst, Gemüse, Fahrzeuge, Kleidung, Spielzeug, Formen) im selben freundlichen Stil. Entweder selbst gezeichnet oder aus einer frei lizenzierten Sammlung (zum Beispiel OpenMoji, CC BY-SA 4.0, mit Lizenzhinweis), lokal eingebunden. Keine Fotos, keine Figuren aus Filmen.
+  - eine **Bilder-Sammlung** (Tiere, Fantasie-Wesen, Futter, Dinge, Formen) im selben freundlichen Stil: **OpenMoji** (frei lizenziert, CC BY-SA 4.0, mit Lizenzhinweis), lokal eingebunden. Jedes Bild gibt es in Farbe und als Umriss zum Anmalen, dazu als Schatten. Was OpenMoji nicht hat (Formen, Socken mit Mustern, der Fehler-Kobold), wird im selben Stil selbst gezeichnet. Keine Fotos, keine Figuren aus Filmen.
 - **Farben:** nur gut unterscheidbare Grundfarben (rot, blau, gelb, grün), zusätzlich mit einem Muster oder einer Form unterscheidbar, damit es auch bei Farbschwäche und schlechtem Drucker klappt.
 
 ## 7. Bildschirm-Teil: Web-App auf GitHub Pages
@@ -127,12 +127,12 @@ Ein druckbarer Guide plus eine kleine Web-App, mit dem ich mit meiner jüngeren 
 ### Bedienung für ein Kind, das nicht liest
 
 - **Kein Text für {{KIND}}.** Die Aufgabe zeigt sich durch ein Bild (dasselbe Aufgaben-Bild wie am Papier) und ein Beispiel. Ganz oben steht klein ein Satz **für mich** zum Vorsagen.
-- **Ton** je nach Entscheidung oben: Standard ist kein Ton. Mit Sprachausgabe: ein großer Ohr-Knopf spricht den Satz (Gerätestimme, Deutsch); fehlt eine deutsche Stimme, geht alles auch ohne. Mit eigenen Aufnahmen: Ich spreche die Sätze in der App unter „Für Erwachsene“ ein, sie bleiben nur auf dem Gerät.
+- **Kein Ton.** Ich sitze daneben, lese den Satz für mich und rede mit ihr. Die App ist etwas, das wir gemeinsam machen.
 - **Nur Antippen**, kein Ziehen, kein Wischen, kein Doppeltippen, kein langes Drücken.
 - **Riesige Tippflächen:** mindestens 72 · 72 px, mindestens 16 px Abstand, höchstens 4 Antworten auf einmal.
 - **Falsch antippen** ist kein Drama: Das Bild wackelt kurz freundlich und bleibt da, sie kann es gleich nochmal probieren. **Richtig:** ein kleines Hüpfen und ein Stern, dann geht es von selbst zum nächsten Level.
 - **Bewertet wird nach dem Ergebnis**, mit demselben Prüf-Code wie beim Bauen (zum Beispiel: Kommt das Tier mit diesen Pfeilen zum Futter?).
-- **Kindersicher:** Die Startseite zeigt nur große Bilder der Pakete. Alles andere (Fortschritt löschen, Ton, Name) steht hinter „Für Erwachsene“ mit einer einfachen Eltern-Frage. In der Anleitung steht, wie ich am iPhone/iPad „Geführter Zugriff“ und unter Android „App anpinnen“ einschalte, damit sie nicht aus der App wischt.
+- **Kindersicher:** Die Startseite zeigt nur große Bilder der Pakete. Alles andere (Fortschritt löschen, Bilder-Lizenz) steht hinter „Für Erwachsene“ mit einer einfachen Eltern-Frage. In der Anleitung steht, wie ich am iPhone/iPad „Geführter Zugriff“ und unter Android „App anpinnen“ einschalte, damit sie nicht aus der App wischt.
 - Das Bild dreht sich beim Drehen des Geräts nie mit (oben bleibt oben wie am Papier).
 
 ### Geräte, Fortschritt, offline (wie bei der großen Schwester)
@@ -166,13 +166,13 @@ Wie bei der großen Schwester. GitHub Pages braucht im Gratis-Konto ein öffentl
   - **Was gehört nicht dazu:** Jedes Bild hat in der Bilder-Sammlung Merkmale (Farbe, Form, Größe, Art). Genau ein Bild unterscheidet sich, und zwar in genau dem Merkmal, das die Lösung nennt.
   - **Sortieren, Paare, Schatten:** Jedes Ding passt zu genau einer Gruppe, jedes Paar ist eindeutig.
   - **Muster:** Die Regel ergibt genau eine nächste Perle. Das Muster zeigt die Regel mindestens zweimal ganz, bevor gefragt wird.
-  - **Mengen:** Jede gezeigte Menge wird gezählt, höchstens 5 (im Schwerer-Teil höchstens 6), Punkte nie überlappend.
+  - **Mengen:** Jede gezeigte Menge wird gezählt, höchstens 10, Punkte und Bilder nie überlappend.
   - **Bildgeschichten:** genau eine sinnvolle Reihenfolge, sonst gekennzeichnet („beides geht“).
   - **Pfeil-Wege:** Das Ziel ist erreichbar, die Figur verlässt nie das Gitter. Bei „Welcher Weg ist richtig?“ ist genau einer richtig.
   - **Kobold-Aufgaben:** genau ein Fehler (vertauscht, zu viel, zu wenig).
   - Der Build bricht ab, wenn eine Aufgabe ohne Kennzeichnung nicht eindeutig ist.
 - **Kein Text auf den Kinderblättern**, außer den grauen Sätzen für mich (gekennzeichnet) und dem Namensfeld. Der Build prüft das.
-- Kein Blatt läuft über die Seite. **Jede Seite wird als Bild kontrolliert.** Bilder mindestens 3 cm, Gitterfelder mindestens 4 cm, Karten mindestens 6 cm (Build prüft das).
+- Kein Blatt läuft über die Seite. **Jede Seite wird als Bild kontrolliert.** Bilder mindestens 2,5 cm, Gitterfelder mindestens 4 cm, Ausschneide-Karten mindestens 5 cm (Build prüft das).
 - Jede Aufgabe auf einem Blatt hat eine Lösung in der Anleitung.
 - Jeder QR-Code wird aus dem Seitenbild zurückgelesen und mit der Soll-Adresse verglichen.
 - Spiele funktionieren zu zweit mit Material, das wir zu Hause haben.
@@ -198,21 +198,21 @@ Wie bei der großen Schwester. GitHub Pages braucht im Gratis-Konto ein öffentl
 
 | Nr | Titel (Arbeitstitel) | Inhalt | Spiel / Bewegung / Basteln | Bildschirm-Bonus |
 |---|---|---|---|---|
-| **1** | **Alles hat seinen Platz** | Sortieren nach **Farbe**: 2 Gruppen, dann 3. Nebenbei einschätzen: Farben, Formen, Zählen bis wie viel? | Socken- und Bauklotz-Sortieren in Körbe, „Farben-Jagd“ in der Wohnung (bring mir etwas Rotes!) | Dinge in den richtigen Korb tippen |
-| **2** | **Groß, mittel, klein** | Nach **Größe** ordnen (3 Stufen), groß und klein zuordnen (großer Teller, kleiner Löffel) | Becher-Turm, Kuscheltier-Familie der Größe nach aufstellen | Das Größte / Kleinste antippen, der Größe nach tippen |
-| **3** | **Wer gehört nicht dazu?** | Einer passt nicht (Farbe, Form, Art). Der Fehler-Kobold hat etwas dazugeschummelt: erste Kobold-Suche | Kobold-Korb: Ich mische etwas Falsches unter die Sortier-Körbe, sie findet es | Kobold-Suche: das falsche Bild antippen |
-| **4** | **Schatten-Detektivin** | **Formen** (Kreis, Dreieck, Viereck) und Schatten zuordnen | Formen-Jagd in der Wohnung, Schattenspiel mit Taschenlampe, Formen-Stempel aus Kartoffeln | Welcher Schatten passt? |
-| **5** | **Wer gehört zu wem?** | **Paare** zuordnen: Socke zu Socke, Tier zu Futter, Mama-Tier zu Baby-Tier | Paare-Aufdeck-Spiel mit eigenen Bildkarten (6 Paare, schwerer 9) | Paare antippen |
+| **1** | **Das Einhorn räumt auf** | Sortieren: zuerst nach **Farbe** (Einstieg), dann nach **Wohnort** (Wasser, Wiese, Himmel) und nach **Art** (Tier oder Fantasie-Wesen), im Schwerer-Teil zwei Merkmale auf einmal. Nebenbei einschätzen: Zählt sie jedes Ding genau einmal? | Aufräum-Spiel mit Kuscheltieren und Bauklötzen in Körbe, „Farben-Jagd“ in der Wohnung, Schneiden und Kleben in die richtigen Körbe | Dinge in den richtigen Korb tippen |
+| **2** | **Drachen groß und klein** | Nach **Größe** ordnen (3, im Schwerer-Teil 4–5 Stufen), Größen zuordnen (der große Drache in die große Höhle) | Becher-Turm, Kuscheltier-Familie der Größe nach aufstellen, Drachen-Familie ausschneiden und der Größe nach kleben | Das Größte / Kleinste antippen, der Größe nach tippen |
+| **3** | **Der Kobold schummelt** | Einer passt nicht (Farbe, Form, Art, Wohnort). Der Fehler-Kobold hat etwas dazugeschummelt: erste Kobold-Suche. Im Schwerer-Teil: Sie sagt, **warum** es nicht passt | Kobold-Korb: Ich mische etwas Falsches unter die Sortier-Körbe, sie findet es. Dann ist sie der Kobold | Kobold-Suche: das falsche Bild antippen |
+| **4** | **Schatten-Detektivin** | Schatten zuordnen: zuerst ganz verschiedene Umrisse, dann ähnliche (Katze oder Fuchs?). **Formen** im Alltag finden (Was ist rund?) | Schattenspiel mit Taschenlampe und Kuscheltieren, Formen-Jagd in der Wohnung | Welcher Schatten passt? |
+| **5** | **Wer gehört zu wem?** | **Paare** zuordnen: gleiche Socken, Tier und Futter, Tier und Zuhause | Paare-Aufdeck-Spiel mit eigenen Bildkarten (6 Paare, schwerer 9), Karten selbst ausschneiden | Paare antippen |
 
 ### Block B: Muster und Mengen
 
 | Nr | Titel | Inhalt | Spiel / Bewegung / Basteln | Bildschirm-Bonus |
 |---|---|---|---|---|
 | 6 | Muster-Raupe | Muster AB-AB fortsetzen (Farben, Formen) | Perlen-Kette fädeln, Klatsch-Stampf-Muster | Wie geht die Raupe weiter? |
-| 7 | Auf einen Blick | Mengen 1–3 sehen ohne Zählen, Würfelbilder, Finger zeigen | Würfel-Bewegungsspiel (so oft hüpfen, wie der Würfel zeigt, Würfel mit 1–3 Punkten) | Wie viele? Punkte antippen |
+| 7 | Auf einen Blick | Mengen 1–5 sehen ohne Zählen, Würfelbilder, Finger zeigen | Würfel-Bewegungsspiel (so oft hüpfen, wie der Würfel zeigt) | Wie viele? Punkte antippen |
 | 8 | Für jeden einen | Eins-zu-eins zuordnen, mehr, weniger, gleich viel | Tisch decken für die Kuscheltiere (jedem einen Teller), Jause verteilen | Wer hat mehr? |
 | 9 | Muster werden länger | ABB, ABC, Bewegungs-Muster, der Kobold hat ein Muster kaputt gemacht | Eigenes Muster legen, ich setze es fort (und umgekehrt) | Muster reparieren |
-| 10 | Zählen bis 5 | Mengen bis 5, zählen mit Zeigen, Würfelbilder bis 5 | Laufspiel auf einem Bild-Pfad mit eigenem Würfel. **Urkunde 1** | Zähl-Levels bis 5 |
+| 10 | Zählen bis 10 | Mengen bis 10, zählen mit Zeigen (jedes Ding genau einmal), zwei Würfel zusammen | Laufspiel auf einem Bild-Pfad mit eigenem Würfel. **Urkunde 1** | Zähl-Levels bis 10 |
 
 ### Block C: Reihenfolge, Befehle, Wege
 
@@ -255,7 +255,7 @@ Allgemein:
 - Bewegung oder Tisch: Was mag sie lieber?
 - Anleitung: zu lang / passt / mehr Sätze zum Sagen?
 - Blätter: zu viel / passt / mehr?
-- Bildschirm: Konnte sie gut aufhören? Hat sie die App ohne Lesen verstanden? Ton nötig?
+- Bildschirm: Konnte sie gut aufhören? Hat sie die App ohne Lesen verstanden?
 - Gerätetest (iPhone, iPad, Android): Was hat gehakt?
 - Lieblingsspiel von {{KIND}}:
 - Hat die große Schwester mitgemacht? Wie war das?
@@ -296,10 +296,10 @@ git clone --depth 1 https://github.com/sadoMasupilami/<repo-der-grossen-schweste
 | Teil | Übernehmen? |
 |---|---|
 | `build.mjs`, `baue.sh`, `werkzeuge/mit-nix.sh` (HTML → PDF mit Playwright und Chrome, Seitenbilder, Inhaltsverzeichnis, Prüfungen) | ja, fast unverändert |
-| Prüfungen im Build (Überlauf, Druckrand, Pflichtteile, QR-Codes, Name im Repo, Zeichen in der Schrift) | ja. Neu: „kein Text auf Kinderblättern“, Bildgröße mindestens 3 cm, Felder mindestens 4 cm |
+| Prüfungen im Build (Überlauf, Druckrand, Pflichtteile, QR-Codes, Name im Repo, Zeichen in der Schrift) | ja. Neu: „kein Text auf Kinderblättern“, Bildgröße mindestens 2,5 cm, Felder mindestens 4 cm |
 | `src/styles.css`, `src/components.js`, `src/rahmen/` | als Vorlage, Blätter neu gestaltet (Aufgaben-Bilder statt Text, größer, luftiger) |
 | `vorlagen/AUTOREN-LEITFADEN.md` | als Vorlage, an die neuen Bausteine anpassen |
-| `src/fonts/` (Andika, Nunito, SIL OFL) | ja (Schrift nur in der Anleitung und für die Sätze für mich) |
+| `src/fonts/` (Andika, Nunito, SIL OFL) | ja (Schrift nur in der Anleitung und für die Sätze für mich). Die App braucht keine eigene Schrift, weil sie für {{KIND}} keinen Text zeigt |
 | Plugin-Aufbau der Rätselarten (`werkzeuge/arten/`, `web/kern/`, `web/spiele/`, `tests/spiele/`) | ja, mit neuen Arten: `sortieren`, `passtnicht`, `groesse`, `schatten`, `paare`, später `muster`, `menge`, `reihenfolge`, `pfeilweg` |
 | `web/` (Service Worker, Manifest, Startseite, Eltern-Bereich, Tests mit Playwright) | ja, Startseite nur mit großen Bildern, Tippflächen 72 px |
 
@@ -307,4 +307,3 @@ git clone --depth 1 https://github.com/sadoMasupilami/<repo-der-grossen-schweste
 
 - **Bilder-Sammlung** `bilder/` mit einer Datei pro Bild (SVG) und einer Merkmals-Liste (`bilder/merkmale.json`: Farbe, Form, Größe, Art, passt zu …). Löser, Blätter und App verwenden dieselbe Sammlung.
 - **Aufgaben-Bilder** als SVG (anmalen, verbinden, einkreisen, aufkleben, zeigen, sagen, zuhören), eine Datei `web/kern/symbole.js` wie bei der großen Schwester.
-- **Optional Ton:** Sprachausgabe über die Web Speech API (nur wenn eine deutsche Stimme da ist) oder lokale Aufnahmen im Browser (IndexedDB), nie hochgeladen.

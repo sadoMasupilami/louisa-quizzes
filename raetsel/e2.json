@@ -1,0 +1,63 @@
+{
+  "einheit": 2,
+  "titel": "Drachen groß und klein",
+  "bild": "drache",
+  "aufgaben": {
+    "groesster-drache": {
+      "art": "groesse", "web": false,
+      "satz": "Male den größten Drachen an.",
+      "bild": "drache", "frage": "groesste", "stufen": [0.5, 0.75, 1], "anordnung": [1, 2, 0]
+    },
+    "kleinste-eule": {
+      "art": "groesse", "web": false,
+      "satz": "Kreise die kleinste Eule ein.",
+      "bild": "eule", "frage": "kleinste", "stufen": [0.45, 0.7, 1], "anordnung": [2, 0, 1]
+    },
+    "groesstes-einhorn": {
+      "art": "groesse", "web": false,
+      "satz": "Vier Einhörner! Male das größte an.",
+      "bild": "einhorn", "frage": "groesste", "stufen": [0.45, 0.6, 0.8, 1], "anordnung": [2, 0, 3, 1]
+    },
+    "hoehlen": {
+      "art": "groessen-paare", "web": false,
+      "satz": "Jeder Drache sucht seine Höhle: der große die große, der kleine die kleine. Verbinde.",
+      "bild": "drache", "partner": "hoehle", "stufen": [0.5, 0.75, 1], "links": [0, 2, 1], "rechts": [2, 1, 0]
+    },
+    "stiege": {
+      "art": "groesse", "web": false,
+      "satz": "Schneide die drei Drachen aus. Kleb sie auf die Stiege: unten den kleinsten, oben den größten.",
+      "bild": "drache", "frage": "ordnen", "stufen": [0.5, 0.75, 1], "anordnung": [2, 0, 1]
+    },
+    "w-groesster": {
+      "art": "groesse",
+      "satz": "Welcher Drache ist der größte? Tipp ihn an.",
+      "bild": "drache", "frage": "groesste", "stufen": [0.5, 0.75, 1], "anordnung": [0, 2, 1]
+    },
+    "w-kleinste": {
+      "art": "groesse",
+      "satz": "Welches Küken ist das kleinste?",
+      "bild": "kueken", "frage": "kleinste", "stufen": [0.45, 0.7, 1], "anordnung": [1, 2, 0]
+    },
+    "w-groesstes-4": {
+      "art": "groesse",
+      "satz": "Vier Einhörner. Welches ist das größte?",
+      "bild": "einhorn", "frage": "groesste", "stufen": [0.45, 0.6, 0.8, 1], "anordnung": [1, 3, 0, 2]
+    },
+    "w-ordnen-3": {
+      "art": "groesse",
+      "satz": "Tipp die Eulen der Reihe nach an: zuerst die kleinste, zum Schluss die größte.",
+      "bild": "eule", "frage": "ordnen", "stufen": [0.5, 0.75, 1], "anordnung": [2, 0, 1]
+    },
+    "w-ordnen-4": {
+      "art": "groesse",
+      "satz": "Jetzt vier Drachen: vom kleinsten bis zum größten antippen.",
+      "bild": "drache", "frage": "ordnen", "stufen": [0.45, 0.6, 0.8, 1], "anordnung": [2, 0, 3, 1]
+    },
+    "w-knapp": {
+      "art": "groesse", "knapp": true,
+      "satz": "Ganz genau schauen: Welcher Wal ist der größte?",
+      "bild": "wal", "frage": "groesste", "stufen": [0.7, 0.8, 0.9, 1], "anordnung": [2, 0, 3, 1]
+    }
+  },
+  "web": { "levels": ["w-groesster", "w-kleinste", "w-groesstes-4", "w-ordnen-3", "w-ordnen-4", "w-knapp"] }
+}

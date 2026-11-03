@@ -1,0 +1,22 @@
+{
+  "name": "schau-werkstatt",
+  "private": true,
+  "type": "module",
+  "description": "Schau- und Spiel-Werkstatt: druckbarer Guide (HTML/CSS → PDF) und kleine Web-App für ein Kind, das noch nicht liest",
+  "scripts": {
+    "build": "node build.mjs",
+    "png": "node build.mjs --png",
+    "pruefe": "node werkzeuge/pruefe.mjs --bericht",
+    "web": "node werkzeuge/web-bauen.mjs",
+    "test:kern": "node --test tests/kern.test.mjs",
+    "test:web": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "jsqr": "1.4.0",
+    "opentype.js": "1.3.4",
+    "playwright-core": "1.63.0",
+    "pngjs": "7.0.0",
+    "qrcode": "1.5.4"
+  }
+}

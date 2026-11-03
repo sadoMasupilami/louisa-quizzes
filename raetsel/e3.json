@@ -1,0 +1,33 @@
+{
+  "einheit": 3,
+  "titel": "Der Kobold schummelt",
+  "bild": "kobold",
+  "aufgaben": {
+    "zeile-farbe": { "art": "passtnicht", "web": false, "satz": "Was passt hier nicht dazu? Kreise es ein.", "dinge": ["banane", "kueken", "apfel", "stern"], "loesung": "apfel", "merkmal": "farbe" },
+    "zeile-bewegt": { "art": "passtnicht", "web": false, "satz": "Und hier?", "dinge": ["fisch", "eule", "wal", "delfin"], "loesung": "eule", "merkmal": "bewegt" },
+    "zeile-wesen": { "art": "passtnicht", "web": false, "satz": "Und hier?", "dinge": ["einhorn", "fee", "drache", "katze"], "loesung": "katze", "merkmal": "art" },
+    "zeile-form": { "art": "passtnicht", "web": false, "satz": "Die Farbe ist hier egal. Schau auf die Form!", "dinge": ["form-kreis-rot", "form-kreis-blau", "form-dreieck-gelb", "form-kreis-gruen"], "loesung": "form-dreieck-gelb", "merkmal": "form" },
+    "korb-rot": {
+      "art": "passtnicht", "web": false, "satz": "Der Kobold hat in jeden Korb etwas Falsches geschummelt. Kreise es ein.",
+      "korb": { "farbe": "rot", "bedingung": { "merkmal": "farbe", "wert": "rot" } },
+      "dinge": ["erdbeere", "pilz", "banane", "marienkaefer"], "loesung": "banane", "merkmal": "farbe"
+    },
+    "korb-welle": {
+      "art": "passtnicht", "web": false, "satz": "",
+      "korb": { "etikett": "welle", "bedingung": { "merkmal": "bewegt", "wert": "schwimmt" } },
+      "dinge": ["oktopus", "hase", "fisch", "wal"], "loesung": "hase", "merkmal": "bewegt"
+    },
+    "korb-glitzer": {
+      "art": "passtnicht", "web": false, "satz": "",
+      "korb": { "etikett": "glitzer", "bedingung": { "merkmal": "art", "wert": "wesen" } },
+      "dinge": ["einhorn", "zauberer", "hund", "kobold"], "loesung": "hund", "merkmal": "art"
+    },
+    "w-gruen": { "art": "passtnicht", "satz": "Der Kobold hat etwas dazugeschummelt. Was passt nicht?", "dinge": ["gurke", "brokkoli", "zitrone", "birne"], "loesung": "zitrone", "merkmal": "farbe" },
+    "w-fliegen": { "art": "passtnicht", "satz": "Drei fliegen. Und eines?", "dinge": ["biene", "fisch", "schmetterling", "vogel"], "loesung": "fisch", "merkmal": "bewegt" },
+    "w-tiere": { "art": "passtnicht", "satz": "Drei Tiere und …?", "dinge": ["hase", "maus", "igel", "karotte"], "loesung": "karotte", "merkmal": "art" },
+    "w-wesen": { "art": "passtnicht", "satz": "Wer ist kein Fantasie-Wesen?", "dinge": ["drache", "schaf", "fee", "einhorn"], "loesung": "schaf", "merkmal": "art" },
+    "w-form": { "art": "passtnicht", "satz": "Schau auf die Form, nicht auf die Farbe.", "dinge": ["form-viereck-rot", "form-viereck-blau", "form-kreis-rot", "form-viereck-gelb"], "loesung": "form-kreis-rot", "merkmal": "form" },
+    "w-alle-rot": { "art": "passtnicht", "satz": "Alle sind rot. Aber eines kann man nicht essen!", "dinge": ["apfel", "erdbeere", "kirschen", "marienkaefer"], "loesung": "marienkaefer", "merkmal": "art" }
+  },
+  "web": { "levels": ["w-gruen", "w-fliegen", "w-tiere", "w-wesen", "w-form", "w-alle-rot"] }
+}

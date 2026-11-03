@@ -1,0 +1,28 @@
+{
+  "einheit": 4,
+  "titel": "Schatten-Detektivin",
+  "bild": "lupe",
+  "aufgaben": {
+    "schatten-verbinden": {
+      "art": "schatten-paare", "web": false,
+      "satz": "Wem gehört welcher Schatten? Verbinde.",
+      "bilder": ["eule", "hase", "fisch", "schnecke"], "schatten": [2, 0, 3, 1]
+    },
+    "genau-einhorn": { "art": "schatten", "web": false, "satz": "Welcher Schatten gehört genau zu diesem Bild? Kreise ihn ein.", "richtung": "zum-schatten", "bild": "einhorn", "optionen": ["pferd", "giraffe", "einhorn"] },
+    "genau-katze": { "art": "schatten", "web": false, "satz": "", "richtung": "zum-schatten", "bild": "katze", "optionen": ["katze", "fuchs", "maus"] },
+    "genau-vogel": { "art": "schatten", "web": false, "satz": "", "richtung": "zum-schatten", "bild": "vogel", "optionen": ["eule", "vogel", "papagei"] },
+    "kreise": {
+      "art": "ausmalen", "web": false,
+      "satz": "Male alle Kreise an.",
+      "bedingung": { "merkmal": "form", "wert": "kreis" },
+      "dinge": ["form-kreis-rot", "form-dreieck-rot", "form-viereck-blau", "form-kreis-blau", "form-stern-rot", "form-dreieck-gruen", "form-kreis-gelb", "form-herz-blau", "form-viereck-gelb"]
+    },
+    "w-hase": { "art": "schatten", "satz": "Welcher Schatten gehört zum Hasen?", "richtung": "zum-schatten", "bild": "hase", "optionen": ["fisch", "hase", "schnecke"] },
+    "w-elefant": { "art": "schatten", "satz": "Und welcher zum Elefanten?", "richtung": "zum-schatten", "bild": "elefant", "optionen": ["giraffe", "kueken", "elefant"] },
+    "w-drache": { "art": "schatten", "satz": "Jetzt andersrum: Wem gehört dieser Schatten?", "richtung": "zum-bild", "bild": "drache", "optionen": ["drache", "einhorn", "schmetterling"] },
+    "w-eule": { "art": "schatten", "satz": "Vier Schatten. Welcher gehört zur Eule?", "richtung": "zum-schatten", "bild": "eule", "optionen": ["vogel", "papagei", "eule", "schmetterling"] },
+    "w-pferd": { "art": "schatten", "satz": "Wem gehört dieser Schatten? Schau genau auf den Kopf!", "richtung": "zum-bild", "bild": "pferd", "optionen": ["einhorn", "schaf", "pferd"] },
+    "w-katze": { "art": "schatten", "satz": "Ganz schwer: Welcher Schatten gehört zur Katze?", "richtung": "zum-schatten", "bild": "katze", "optionen": ["fuchs", "hund", "maus", "katze"] }
+  },
+  "web": { "levels": ["w-hase", "w-elefant", "w-drache", "w-eule", "w-pferd", "w-katze"] }
+}

@@ -1,0 +1,30 @@
+{
+  "einheit": 5,
+  "titel": "Wer gehört zu wem?",
+  "bild": "fee",
+  "aufgaben": {
+    "futter": {
+      "art": "paare-verbinden", "web": false, "beziehung": "frisst",
+      "satz": "Wer frisst was? Verbinde jedes Tier mit seinem Futter.",
+      "links": ["hase", "maus", "hund", "affe"], "rechts": ["banane", "karotte", "knochen", "kaese"]
+    },
+    "socken": {
+      "art": "paare-verbinden", "web": false, "beziehung": "gleich",
+      "satz": "Welche Socken sind genau gleich? Verbinde.",
+      "links": ["socke-streifen-rot", "socke-punkte-blau", "socke-herzen-rot", "socke-streifen-blau"],
+      "rechts": ["socke-streifen-blau", "socke-herzen-rot", "socke-streifen-rot", "socke-punkte-blau"]
+    },
+    "fantasie": {
+      "art": "paare-verbinden", "web": false, "beziehung": "gehoert",
+      "satz": "Was gehört zu wem? Verbinde.",
+      "links": ["drache", "fee", "meerjungfrau", "kobold"], "rechts": ["welle", "pilz", "feuer", "zauberstab"]
+    },
+    "w-hase": { "art": "paare", "beziehung": "frisst", "satz": "Was frisst der Hase am liebsten?", "zeige": "hase", "optionen": ["knochen", "karotte", "kaese"] },
+    "w-socke": { "art": "paare", "beziehung": "gleich", "satz": "Welche Socke ist genau gleich?", "zeige": "socke-punkte-gelb", "optionen": ["socke-punkte-blau", "socke-streifen-gelb", "socke-punkte-gelb"] },
+    "w-vogel": { "art": "paare", "beziehung": "gehoert", "satz": "Wo wohnt der Vogel?", "zeige": "vogel", "optionen": ["welle", "nest", "feuer"] },
+    "w-baer": { "art": "paare", "beziehung": "frisst", "satz": "Was schleckt der Bär so gern?", "zeige": "baer", "optionen": ["knochen", "nuss", "honig"] },
+    "w-zauberer": { "art": "paare", "beziehung": "gehoert", "satz": "Was gehört dem Zauberer?", "zeige": "zauberer", "optionen": ["pilz", "kristallkugel", "welle"] },
+    "w-socke-schwer": { "art": "paare", "beziehung": "gleich", "satz": "Ganz genau schauen: Welche Socke ist gleich?", "zeige": "socke-herzen-blau", "optionen": ["socke-herzen-rot", "socke-punkte-blau", "socke-herzen-blau", "socke-uni-blau"] }
+  },
+  "web": { "levels": ["w-hase", "w-socke", "w-vogel", "w-baer", "w-zauberer", "w-socke-schwer"] }
+}

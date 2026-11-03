@@ -1,0 +1,77 @@
+{
+  "einheit": 1,
+  "titel": "Das Einhorn räumt auf",
+  "bild": "einhorn",
+  "aufgaben": {
+    "farben-kleben": {
+      "art": "sortieren", "web": false,
+      "satz": "Schneide die Bilder aus. Kleb jedes in den Korb mit seiner Farbe.",
+      "koerbe": [
+        { "farbe": "rot",  "bedingung": { "merkmal": "farbe", "wert": "rot" } },
+        { "farbe": "gelb", "bedingung": { "merkmal": "farbe", "wert": "gelb" } },
+        { "farbe": "blau", "bedingung": { "merkmal": "farbe", "wert": "blau" } }
+      ],
+      "dinge": ["apfel", "kueken", "wal", "krone", "marienkaefer", "schmetterling", "pilz", "banane", "edelstein", "mond", "fisch", "papagei"]
+    },
+    "wer-fliegt": {
+      "art": "ausmalen", "web": false,
+      "satz": "Male alle an, die fliegen können.",
+      "bedingung": { "merkmal": "bewegt", "wert": "fliegt" },
+      "dinge": ["eule", "wal", "biene", "einhorn", "katze", "drache", "fisch", "vogel"]
+    },
+    "wer-zaubert": {
+      "art": "ausmalen", "web": false, "aktion": "einkreisen",
+      "satz": "Kreise alle Fantasie-Wesen ein.",
+      "bedingung": { "merkmal": "art", "wert": "wesen" },
+      "dinge": ["fee", "hund", "zauberer", "pferd"]
+    },
+    "w-rot-gelb": {
+      "art": "sortieren",
+      "satz": "Rot oder gelb? Tipp auf den richtigen Korb.",
+      "koerbe": [
+        { "farbe": "rot",  "bedingung": { "merkmal": "farbe", "wert": "rot" } },
+        { "farbe": "gelb", "bedingung": { "merkmal": "farbe", "wert": "gelb" } }
+      ],
+      "dinge": ["apfel", "banane", "kueken", "erdbeere"]
+    },
+    "w-drei-farben": {
+      "art": "sortieren",
+      "satz": "Jetzt gibt es drei Körbe: rot, gelb und blau.",
+      "koerbe": [
+        { "farbe": "rot",  "bedingung": { "merkmal": "farbe", "wert": "rot" } },
+        { "farbe": "gelb", "bedingung": { "merkmal": "farbe", "wert": "gelb" } },
+        { "farbe": "blau", "bedingung": { "merkmal": "farbe", "wert": "blau" } }
+      ],
+      "dinge": ["pilz", "mond", "fisch", "marienkaefer", "krone", "edelstein"]
+    },
+    "w-schwimmt-fliegt": {
+      "art": "sortieren",
+      "satz": "Schwimmt es oder fliegt es? Welle heißt schwimmen, Wolke heißt fliegen.",
+      "koerbe": [
+        { "etikett": "welle", "bedingung": { "merkmal": "bewegt", "wert": "schwimmt" } },
+        { "etikett": "wolke", "bedingung": { "merkmal": "bewegt", "wert": "fliegt" } }
+      ],
+      "dinge": ["fisch", "eule", "wal", "biene", "delfin", "vogel"]
+    },
+    "w-drei-bewegt": {
+      "art": "sortieren",
+      "satz": "Schwimmt es, fliegt es oder läuft es? Das Gras heißt laufen.",
+      "koerbe": [
+        { "etikett": "welle", "bedingung": { "merkmal": "bewegt", "wert": "schwimmt" } },
+        { "etikett": "wolke", "bedingung": { "merkmal": "bewegt", "wert": "fliegt" } },
+        { "etikett": "gras",  "bedingung": { "merkmal": "bewegt", "wert": "laeuft" } }
+      ],
+      "dinge": ["meerjungfrau", "drache", "einhorn", "oktopus", "papagei", "igel"]
+    },
+    "w-tier-wesen": {
+      "art": "sortieren",
+      "satz": "Echtes Tier oder Fantasie-Wesen? Pfote heißt Tier, Glitzer heißt Fantasie.",
+      "koerbe": [
+        { "etikett": "pfote",   "bedingung": { "merkmal": "art", "wert": "tier" } },
+        { "etikett": "glitzer", "bedingung": { "merkmal": "art", "wert": "wesen" } }
+      ],
+      "dinge": ["hase", "fee", "drache", "katze", "zauberer", "schaf"]
+    }
+  },
+  "web": { "levels": ["w-rot-gelb", "w-drei-farben", "w-schwimmt-fliegt", "w-drei-bewegt", "w-tier-wesen"] }
+}

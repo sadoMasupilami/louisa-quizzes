@@ -1,0 +1,11 @@
+# Lokal, nie einchecken (Datenschutz-Variante B)
+kind.json
+AUFTRAG.lokal.md
+
+# Gebaute Dateien
+node_modules/
+out/
+_site/
+test-results/
+playwright-report/
+.DS_Store

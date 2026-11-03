@@ -1,0 +1,16 @@
+{
+  "teile": [
+    "rahmen/00-titel.html",
+    "rahmen/01-inhalt.html",
+    "rahmen/02-einleitung.html",
+    "rahmen/03-hallo.html",
+    "rahmen/04-sammelpass.html",
+    "einheiten/01-das-einhorn-raeumt-auf.html",
+    "einheiten/02-drachen-gross-und-klein.html",
+    "einheiten/03-der-kobold-schummelt.html",
+    "einheiten/04-schatten-detektivin.html",
+    "einheiten/05-wer-gehoert-zu-wem.html",
+    "rahmen/90-rueckmeldebogen.html",
+    "rahmen/91-geraetetest.html"
+  ]
+}

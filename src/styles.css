@@ -1,0 +1,304 @@
+/* =====================================================================
+   Schau- und Spiel-Werkstatt – Design
+   Zwei Seitenarten:
+   - .seite (feste A4-Seite): Blätter des Kindes, Titel, Hallo-Seite, Sammelpass
+   - .anleitung / .spick (fließender Text für Mama oder Papa, mit Seitenrand)
+   Auf den Blättern des Kindes steht kein Text für sie. Was grau und klein dasteht (.fuer-mich),
+   ist für Mama oder Papa zum Vorlesen.
+   ===================================================================== */
+
+@font-face { font-family: "Andika"; src: url("fonts/Andika-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Andika"; src: url("fonts/Andika-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Nunito"; src: url("fonts/Nunito-Variable.ttf"); font-weight: 200 1000; }
+@font-face { font-family: "Nunito"; src: url("fonts/Nunito-Italic-Variable.ttf"); font-weight: 200 1000; font-style: italic; }
+
+:root {
+  --tinte: #1f2340;
+  --grau: #6b6f86;
+  --linie: #b9bdd3;
+  --papier: #ffffff;
+  --rot: #d1335b;              /* Lösungen */
+  --gold: #f2b705;
+
+  /* Farbe pro Block */
+  --block-a: #7a4fd1; --block-a-hell: #f1ebff;   /* Schauen, Sortieren, Zuordnen */
+  --block-b: #0f8f87; --block-b-hell: #e3f6f4;   /* Muster und Mengen */
+  --block-c: #e0701b; --block-c-hell: #fff0e3;   /* Reihenfolge, Befehle, Wege */
+  --block-d: #c23a8c; --block-d-hell: #fde9f4;   /* Regeln und Spiele */
+  --akzent: var(--block-a);
+  --akzent-hell: var(--block-a-hell);
+
+  --kind: "Andika", sans-serif;
+  --text: "Nunito", sans-serif;
+}
+[data-block="B"] { --akzent: var(--block-b); --akzent-hell: var(--block-b-hell); }
+[data-block="C"] { --akzent: var(--block-c); --akzent-hell: var(--block-c-hell); }
+[data-block="D"] { --akzent: var(--block-d); --akzent-hell: var(--block-d-hell); }
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  background: var(--papier);
+  color: var(--tinte);
+  font-family: var(--text);
+  font-size: 10.5pt;
+  line-height: 1.42;
+  hyphens: auto;
+}
+svg { display: block; }
+
+/* ---------------------------------------------------------------------
+   Seiten
+   --------------------------------------------------------------------- */
+@page { size: A4; margin: 0; }
+@page anleitung {
+  size: A4;
+  margin: 15mm 17mm 17mm 17mm;
+  @bottom-center { content: counter(page); font-family: "Nunito", sans-serif; font-size: 9pt; color: #6b6f86; }
+  @bottom-left { content: "{{KIND}}s Schau- und Spiel-Werkstatt"; font-family: "Nunito", sans-serif; font-size: 7.5pt; color: #9a9db0; }
+}
+@page fest { size: A4; margin: 0; }
+
+.seite {
+  page: fest;
+  width: 210mm;
+  height: 297mm;
+  padding: 12mm 14mm 10mm 14mm;
+  position: relative;
+  overflow: hidden;
+  break-before: page;
+  break-after: page;
+  break-inside: avoid;
+  display: flex;
+  flex-direction: column;
+}
+.anleitung, .spick { page: anleitung; break-before: page; }
+
+/* Welche Teile in welchem PDF */
+body.vorlagen .anleitung, body.vorlagen .spick, body.vorlagen .nur-buch { display: none !important; }
+body.spickzettel > *:not(.spick) { display: none !important; }
+body.spickzettel .spick { break-before: page; }
+
+/* Fußzeile der festen Seiten */
+.seite > .fuss {
+  margin-top: auto;
+  padding-top: 2mm;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--text);
+  font-size: 8pt;
+  color: var(--grau);
+}
+body.vorlagen .seite > .fuss .seitenzahl { visibility: hidden; }
+
+/* Für Mama oder Papa: klein und grau, auch auf den Blättern */
+.fuer-mich { font-family: var(--text); font-size: 10pt; line-height: 1.3; color: var(--grau); }
+
+/* ---------------------------------------------------------------------
+   Blätter des Kindes
+   --------------------------------------------------------------------- */
+.blatt { gap: 0; }
+.kopf {
+  display: flex; align-items: center; gap: 5mm;
+  border-bottom: 1.2mm solid var(--akzent);
+  padding-bottom: 3mm; margin-bottom: 5mm;
+}
+.kopf .stern { width: 18mm; height: 18mm; flex: none; }
+.kopf .einheit-bild { width: 20mm; height: 20mm; flex: none; border-radius: 50%; background: var(--akzent-hell); border: 0.6mm solid var(--akzent); padding: 2mm; }
+.kopf .name { flex: 1; display: flex; align-items: flex-end; gap: 2mm; height: 16mm; }
+.kopf .name .stift { width: 13mm; height: 13mm; flex: none; }
+.kopf .name .linie { flex: 1; border-bottom: 0.5mm solid var(--tinte); height: 12mm; }
+.kopf .titel-klein { text-align: right; max-width: 45mm; }
+
+.aufgabe { display: flex; flex-direction: column; gap: 2.5mm; margin: 0 0 6mm 0; }
+.aufgabe > .aufgabe-kopf { display: flex; align-items: center; gap: 3.5mm; }
+.aufgabe > .aufgabe-kopf .tun {
+  width: 15mm; height: 15mm; flex: none; padding: 1.2mm;
+  border: 0.6mm solid var(--akzent); border-radius: 3mm; background: var(--akzent-hell);
+}
+.aufgabe > .aufgabe-kopf .tun + .tun { margin-left: -1.5mm; }
+.aufgabe > .aufgabe-kopf .fuer-mich { flex: 1; }
+.aufgabe > .koerper { display: flex; justify-content: center; }
+.aufgabe.wachsen { flex: 1; }
+.aufgabe.kompakt { flex-direction: row; align-items: center; gap: 5mm; }
+.aufgabe.kompakt > .tun { width: 15mm; height: 15mm; flex: none; padding: 1.2mm; border: 0.6mm solid var(--akzent); border-radius: 3mm; background: var(--akzent-hell); }
+.aufgabe.kompakt > .koerper { flex: 1; }
+.seite.eng { padding: 8mm 9mm 7mm 9mm; }
+.malbild .bilder { display: flex; justify-content: center; gap: 6mm; }
+.aufgabe.wachsen > .koerper { flex: 1; }
+
+/* Eine Reihe von Bildern in Kästchen (passt nicht, Schatten, Größen) */
+.reihe { display: flex; align-items: flex-end; justify-content: center; gap: 4mm; }
+.reihe .feld {
+  position: relative; display: flex; align-items: flex-end; justify-content: center;
+  border: 0.5mm solid var(--linie); border-radius: 4mm; background: white; padding: 2.5mm;
+}
+.reihe .feld.vorne { border: 0.8mm solid var(--akzent); background: var(--akzent-hell); }
+.reihe .trenner { align-self: center; width: 10mm; height: 10mm; }
+.reihe .basis { border-bottom: 0.7mm solid var(--tinte); }
+
+/* Lösungen: nur in den Lösungs-Miniaturen der Anleitung sichtbar */
+.lsg { display: none !important; }
+.loesungsmodus .lsg { display: block !important; }
+.loesungsmodus .lsg.flex { display: flex !important; }
+.lsg-ring { position: absolute; inset: -2.5mm; border: 1.4mm solid var(--rot); border-radius: 50%; pointer-events: none; }
+.lsg-nr { position: absolute; left: 50%; bottom: -9mm; transform: translateX(-50%); width: 8mm; height: 8mm; }
+svg .lsg-linie { stroke: var(--rot); stroke-width: 1.4; fill: none; stroke-linecap: round; }
+.loesungsmodus svg .lsg-linie { display: inline; }
+svg .lsg-linie { display: none; }
+
+/* Gitter zum Ausmalen */
+.malgitter { display: grid; gap: 5mm; justify-content: center; }
+.malgitter .feld { position: relative; border: 0.5mm solid var(--linie); border-radius: 4mm; padding: 3mm; background: white; }
+
+/* Sortieren und Kleben: hohe Klebeflächen mit Korb unten */
+.klebe-koerbe { display: flex; gap: 6mm; justify-content: center; align-items: stretch; width: 100%; }
+.klebe-korb { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 2mm; position: relative; }
+.klebe-korb .flaeche {
+  flex: 1; width: 100%; border: 0.6mm dashed var(--grau); border-radius: 5mm; background: #fafafc;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 3mm; gap: 2mm;
+}
+.klebe-korb .korb-bild { width: 100%; }
+.klebe-korb .lsg-bilder { flex-wrap: wrap; gap: 1.5mm; justify-content: center; }
+.klebe-korb .lsg-bilder svg { width: 15mm; height: 15mm; border: 0.5mm solid var(--rot); border-radius: 2mm; background: white; }
+
+/* Ausschneide-Karten: gemeinsame dicke Schneidelinien */
+.karten { display: grid; justify-content: center; position: relative; }
+.karte {
+  border: 0.8mm solid var(--tinte); margin: -0.4mm; background: white;
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.karten-schere { position: absolute; width: 12mm; height: 12mm; left: -13mm; top: -4mm; }
+
+/* Verbinden: links und rechts, dazwischen Punkte */
+.verbinden { display: block; }
+
+/* Kobold-Körbe: links der Korb mit Schild, rechts daneben, was drin ist */
+.kobold-koerbe { display: flex; flex-direction: column; gap: 5mm; width: 100%; }
+.kobold-korb { display: flex; flex-direction: row-reverse; align-items: center; justify-content: center; gap: 4mm; }
+.kobold-korb .inhalt { display: grid; grid-template-columns: repeat(4, auto); gap: 2.5mm; padding: 2.5mm; border-radius: 5mm; background: #f4f1ea; border: 0.5mm solid #d9cdb4; }
+.kobold-korb .inhalt .feld { position: relative; background: white; border: 0.5mm solid var(--linie); border-radius: 3mm; padding: 1.5mm; }
+.kobold-korb .korb-bild { width: 46mm; flex: none; }
+
+/* Stiege zum Kleben (Größen ordnen) */
+.stiege { position: relative; }
+
+/* QR-Code (nur für Mama oder Papa) */
+.qr { display: flex; align-items: center; gap: 3mm; }
+.qr svg { width: 26mm; height: 26mm; }
+.qr .fuer-mich { font-size: 8.5pt; max-width: 18mm; }
+
+/* ---------------------------------------------------------------------
+   Anleitung (für Mama oder Papa)
+   --------------------------------------------------------------------- */
+.anleitung h1, .spick h1 {
+  font-family: var(--kind); font-weight: 700; font-size: 22pt; line-height: 1.15;
+  color: var(--akzent); margin: 0 0 1mm 0; display: flex; align-items: center; gap: 4mm;
+}
+.anleitung h1 .einheit-bild, .spick h1 .einheit-bild { width: 16mm; height: 16mm; flex: none; }
+.anleitung .unter, .spick .unter { color: var(--grau); font-weight: 700; margin: 0 0 4mm 0; }
+.anleitung h2 { font-size: 13pt; color: var(--akzent); margin: 5mm 0 2mm 0; break-after: avoid; }
+.anleitung h3 { font-size: 11pt; margin: 3mm 0 1mm 0; break-after: avoid; }
+.anleitung p { margin: 0 0 2mm 0; }
+.anleitung ul, .anleitung ol { margin: 0 0 2mm 0; padding-left: 5.5mm; }
+.anleitung li { margin-bottom: 1mm; }
+
+.kasten { border: 0.5mm solid var(--linie); border-radius: 3mm; padding: 3mm 4mm; margin: 3mm 0; break-inside: avoid; }
+.kasten > :last-child { margin-bottom: 0; }
+.kasten > h3:first-child, .kasten > p:first-child > b:first-child { color: var(--akzent); }
+.kasten > h3:first-child { margin-top: 0; }
+.kasten.ziel { background: var(--akzent-hell); border-color: var(--akzent); }
+.kasten.kurz { border: 0.8mm solid var(--gold); background: #fff8dc; }
+.kasten.material { background: #f7f8fc; }
+.kasten.spiel { border: 0.6mm solid var(--akzent); }
+.kasten.stolper { background: #fff3f0; border-color: #f0b4a8; }
+.kasten.leichter-schwerer { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; background: #f4faf2; border-color: #b6d8ad; }
+.kasten.leichter-schwerer > div > :last-child { margin-bottom: 0; }
+.kasten.schwester { background: #fdf0f7; border-color: #e7a9cb; }
+.kasten.knobelei { background: #eef7fb; border-color: #a9d3e7; }
+.kasten.hintergrund { background: #f6f6f6; }
+.kasten.bildschirm { background: #f2f0ff; border-color: #c6bdf0; }
+.kasten.bildschirm .qr { float: right; margin: 0 0 2mm 4mm; }
+
+/* Ablauf mit Minuten */
+ol.ablauf { list-style: none; padding: 0; counter-reset: schritt; }
+ol.ablauf > li { counter-increment: schritt; position: relative; padding-left: 20mm; margin-bottom: 3mm; break-inside: avoid-page; }
+ol.ablauf > li::before {
+  content: counter(schritt); position: absolute; left: 0; top: 0; width: 7mm; height: 7mm; border-radius: 50%;
+  background: var(--akzent); color: white; font-weight: 900; text-align: center; line-height: 7mm;
+}
+ol.ablauf > li::after {
+  content: attr(data-min) " Min"; position: absolute; left: 8.5mm; top: 0.7mm; font-size: 8.5pt; font-weight: 800; color: var(--grau); white-space: nowrap;
+}
+ol.ablauf > li > b:first-child { color: var(--akzent); }
+
+/* Sätze zum Sagen */
+.sag { margin: 1.5mm 0 2mm 0; padding: 0 0 0 3mm; border-left: 1.2mm solid var(--akzent-hell); break-inside: avoid; }
+.sag > p { margin: 0 0 1.2mm 0; padding-left: 12mm; position: relative; }
+.sag > p::before {
+  position: absolute; left: 0; top: 0.3mm; font-size: 7.5pt; font-weight: 900; border-radius: 1.5mm; padding: 0 1.2mm; line-height: 1.5;
+}
+.sag > p.du::before { content: "Du"; background: var(--akzent); color: white; }
+.sag > p.sie::before { content: "{{KIND}}"; background: #ffe7a8; color: var(--tinte); max-width: 11mm; overflow: hidden; text-overflow: ellipsis; }
+.sag > p.dann { font-style: italic; color: var(--grau); }
+.sag > p.dann::before { content: "▸"; color: var(--grau); font-style: normal; font-size: 9pt; }
+.begriff { font-weight: 800; color: var(--akzent); }
+.blattref { font-weight: 800; color: var(--akzent); text-decoration: none; white-space: nowrap; }
+.bild-inline { display: inline-block; vertical-align: middle; width: 7mm; height: 7mm; margin: -1.5mm 0.5mm -1mm 0.5mm; }
+.bild-inline svg { width: 100%; height: 100%; }
+
+table.tab { border-collapse: collapse; width: 100%; margin: 2mm 0 3mm 0; font-size: 9.5pt; break-inside: auto; }
+table.tab th, table.tab td { border: 0.35mm solid var(--linie); padding: 1.3mm 2mm; text-align: left; vertical-align: top; }
+table.tab th { background: var(--akzent-hell); font-weight: 800; }
+table.tab tr { break-inside: avoid; }
+
+/* Lösungen: verkleinerte Blätter mit roten Lösungen */
+.loesungen-raster { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm 3mm; margin: 2mm 0 3mm 0; break-inside: avoid; }
+.loesung-mini { break-inside: avoid; --s: 0.27; }
+.loesung-mini > .rahmen-mini {
+  width: calc(210mm * var(--s)); height: calc(297mm * var(--s));
+  overflow: hidden; border: 0.35mm solid var(--linie); border-radius: 1.5mm; margin: 0 auto; position: relative;
+}
+/* zoom statt transform: so ist die Miniatur auch beim Umbrechen wirklich klein und wird nicht über Seiten geteilt */
+.loesung-mini > .rahmen-mini > .seite { zoom: var(--s); break-before: auto; break-after: auto; page: auto; }
+.loesung-mini > .titel-mini { font-weight: 800; font-size: 9pt; text-align: center; margin-top: 1mm; }
+.loesung-text { break-inside: avoid; }
+
+/* Spickzettel: kompakt, höchstens eine Seite */
+.spick { font-size: 9.5pt; line-height: 1.33; }
+.spick h2 { font-size: 11pt; color: var(--akzent); margin: 3mm 0 1mm 0; }
+.spick ul, .spick ol { margin: 0 0 1.5mm 0; padding-left: 5mm; }
+.spick li { margin-bottom: 0.6mm; }
+.spick .spick-zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.spick .kasten { margin: 2mm 0; padding: 2mm 3mm; }
+.spick ol.ablauf > li { margin-bottom: 1.5mm; }
+ul.check { list-style: none; padding-left: 0; }
+ul.check > li { padding-left: 5.5mm; position: relative; }
+ul.check > li::before { content: ""; position: absolute; left: 0; top: 1mm; width: 3.2mm; height: 3.2mm; border: 0.4mm solid var(--tinte); border-radius: 0.8mm; }
+
+/* ---------------------------------------------------------------------
+   Rahmenseiten
+   --------------------------------------------------------------------- */
+.titelseite { align-items: center; justify-content: center; text-align: center; gap: 8mm; background: linear-gradient(#fff, var(--block-a-hell)); }
+.titelseite h1 { font-family: var(--kind); font-size: 34pt; line-height: 1.1; color: var(--block-a); margin: 0; }
+.titelseite .bilder { display: flex; gap: 6mm; justify-content: center; }
+.titelseite .bilder svg { width: 38mm; height: 38mm; }
+.inhalt-liste { list-style: none; padding: 0; margin: 0; }
+.inhalt-liste li { display: flex; align-items: baseline; gap: 2mm; margin: 0 0 2.2mm 0; }
+.inhalt-liste li.haupt { font-weight: 800; font-size: 11.5pt; margin-top: 4mm; }
+.inhalt-liste li.unter { padding-left: 8mm; }
+.inhalt-liste li .punkte { flex: 1; border-bottom: 0.35mm dotted var(--linie); transform: translateY(-1mm); }
+.inhalt-liste a { color: inherit; text-decoration: none; }
+.seitenzahl { min-width: 7mm; text-align: right; font-variant-numeric: tabular-nums; }
+
+.sammelpass .felder { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr); gap: 3.5mm; flex: 1; min-height: 0; margin-bottom: 2mm; }
+.sammelpass .feld { border: 0.6mm solid var(--linie); border-radius: 4mm; display: grid; grid-template-columns: 14mm 1fr; grid-template-rows: 1fr auto; gap: 1.5mm; padding: 2mm; align-items: center; justify-items: center; min-height: 0; }
+.sammelpass .feld .oben { display: flex; flex-direction: column; align-items: center; gap: 0.5mm; }
+.sammelpass .feld .bild-klein { width: 12.5mm; height: 12.5mm; }
+.sammelpass .feld .stempel { width: 19mm; height: 19mm; border: 0.5mm dashed var(--grau); border-radius: 50%; }
+.sammelpass .feld .gesichter { grid-column: 1 / 3; display: flex; gap: 2mm; }
+.sammelpass .feld .gesichter svg { width: 8.5mm; height: 8.5mm; }
+
+/* Fehler in Bausteinen sichtbar machen */
+.komp-fehler { outline: 1.5mm solid red !important; background: #ffd6d6 !important; }

@@ -228,15 +228,9 @@
         "zauberer",
         "schaf"
       ]
-    }
+    },
+    "w-alle-fliegen": {"art":"alle-antippen","satz":"Wer kann fliegen? Tipp alle an, die fliegen.","hinweis":{"bild":"wolke"},"bedingung":{"merkmal":"bewegt","wert":"fliegt"},"dinge":["eule","hund","biene","fisch"]},
+    "w-suche-wiese": {"art":"suchbild","szene":"wiese","satz":"Das Einhorn sucht die Hasen. Drei haben sich im Gras versteckt. Findest du sie?","suche":["hase"],"figuren":[{"bild":"hase","feld":1,"versteck":true},{"bild":"biene","feld":2},{"bild":"igel","feld":3},{"bild":"hase","feld":5,"versteck":true},{"bild":"hase","feld":6,"versteck":true},{"bild":"schmetterling","feld":8}]}
   },
-  "web": {
-    "levels": [
-      "w-rot-gelb",
-      "w-drei-farben",
-      "w-schwimmt-fliegt",
-      "w-drei-bewegt",
-      "w-tier-wesen"
-    ]
-  }
+  "web": { "levels": ["w-rot-gelb","w-drei-farben","w-schwimmt-fliegt","w-drei-bewegt","w-tier-wesen","w-alle-fliegen","w-suche-wiese"] }
 }

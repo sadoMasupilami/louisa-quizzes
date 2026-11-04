@@ -21,12 +21,12 @@ Eine Datei pro Einheit. Dieselben Aufgaben gehen an die Blätter und an die Web-
 
 - `satz`: der Satz für Mama oder Papa (am Blatt klein und grau, in der App oben). Pflicht für App-Aufgaben.
 - `"web": false`: nur am Papier. Diese Aufgaben müssen auf einem Blatt stehen (der Build warnt sonst).
-- `web.levels`: 3 bis 7 Levels, höchstens 4 Antworten auf einmal.
+- `web.levels`: 3 bis 7 Levels, höchstens 4 Antworten auf einmal (Spielbretter wie `suchbild` und `aufdecken`: bis zu 8 Flächen).
 - Felder pro Aufgabenart: siehe Kopf von `web/kern/aufgaben.js`. Was „eindeutig“ heißt: `plan/lehrplan.md` Abschnitt 7.6.
 - Prüfen: `node werkzeuge/pruefe.mjs --bericht` (löst alles und zeigt die Lösungen).
 
-Neue Bilder: in `bilder/katalog.json` eintragen (mit Merkmalen), dann einmal `node werkzeuge/bilder-holen.mjs <fluentui-emoji-repo>` (Anleitung im Kopf der Datei).
-Eine neue Aufgabenart: Prüfer und Schritte in `web/kern/aufgaben.js`, Darstellung am Blatt in `src/components.js` (`KOERPER`), Test in `tests/kern.test.mjs`.
+Neue Bilder: in `bilder/katalog.json` eintragen (mit Merkmalen) und in `bilder/motive.json` beschreiben, dann `node werkzeuge/bilder-erzeugen.mjs farbe`, `node werkzeuge/bilder-erzeugen.mjs umriss` und `werkzeuge/bilder-verarbeiten.sh` (Anleitung im Kopf der Dateien). Eingecheckt wird nur `bilder/erzeugt/`.
+Eine neue Aufgabenart: Prüfer und Schritte in `web/kern/aufgaben.js`, Darstellung am Blatt in `src/components.js` (`KOERPER`, entfällt bei Arten nur für die App), Darstellung in `web/app.js`, Tests in `tests/kern.test.mjs` und `tests/web.spec.mjs`.
 
 ## 2. Die Einheit schreiben (`src/einheiten/NN-titel.html`, in `src/buch.json` eintragen)
 

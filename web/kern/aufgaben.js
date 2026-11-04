@@ -15,6 +15,12 @@
 //   paare            zu einem Bild das passende finden (frisst, gehoert, gleich)
 //   paare-verbinden  (nur Papier) linke und rechte Reihe, genau eine Zuordnung
 //   ausmalen         (nur Papier) „Male alle an, die …“: Merkmal und Wert, mindestens 2 Treffer und 2 andere
+//   alle-antippen    (nur App) „Tipp alle an, die …“: bedingung, dinge (3 bis 4), hinweis { bild } oder { farbe } (optional)
+//   suchbild         (nur App) szene, suche (1 bis 3 Bilder), vorlage ('farbe' | 'schatten', optional),
+//                    figuren [{ bild, feld (0 bis 8, 3 · 3-Gitter), versteck }]: alle gesuchten antippen
+//   aufdecken        (nur App) karten: 2 bis 4 Paare, jedes Bild genau zweimal, in fester Reihenfolge
+//   weggenommen      (nur App) dinge (3 bis 4), weg, optionen, frage: zuerst schauen, dann den Kobold antippen, dann raten
+//   turm             (nur App) bild, stufen (3 bis 4), anordnung: vom größten zum kleinsten antippen, der Turm wächst
 (function (g) {
   'use strict';
   const B = () => g.Bilder;
@@ -210,6 +216,96 @@
         for (const b of [].concat(a.bedingung)) if (mm(id)[b.merkmal] == null) f.push(mm(id).name + ': ' + b.merkmal + ' unklar');
       }
       return { fehler: f, loesung: treffer };
+    },
+
+    'alle-antippen'(a) {
+      const f = [];
+      const d = a.dinge || [];
+      if (d.length < 3 || d.length > 4) return { fehler: ['3 bis 4 Bilder'] };
+      if (doppelte(d).length) f.push('Bild doppelt');
+      const treffer = d.map((id, i) => (passt(id, a.bedingung) ? i : -1)).filter((i) => i >= 0);
+      if (treffer.length < 2) f.push('mindestens 2 Bilder zum Antippen');
+      if (d.length === treffer.length) f.push('mindestens 1 Bild, das nicht passt');
+      for (const id of d) {
+        for (const b of [].concat(a.bedingung)) if (mm(id)[b.merkmal] == null) f.push(mm(id).name + ': ' + b.merkmal + ' unklar');
+      }
+      if (a.hinweis) {
+        if (a.hinweis.bild) mm(a.hinweis.bild);
+        else if (!g.Symbole.KORB_FARBEN.includes(a.hinweis.farbe)) f.push('hinweis: Bild oder Korb-Farbe');
+      }
+      return { fehler: f, loesung: treffer };
+    },
+
+    suchbild(a) {
+      const f = [];
+      if (!g.Symbole.SZENEN.includes(a.szene)) f.push('szene: eine von ' + g.Symbole.SZENEN.join(', '));
+      const suche = a.suche || [];
+      const fig = a.figuren || [];
+      if (suche.length < 1 || suche.length > 3 || doppelte(suche).length) f.push('suche: 1 bis 3 verschiedene Bilder');
+      if (fig.length < 3 || fig.length > 7) f.push('3 bis 7 Figuren');
+      if (a.vorlage && !['farbe', 'schatten'].includes(a.vorlage)) f.push('vorlage: farbe oder schatten');
+      if (f.length) return { fehler: f };
+      suche.forEach(mm);
+      fig.forEach((x) => mm(x.bild));
+      const felder = fig.map((x) => x.feld);
+      if (felder.some((n) => !Number.isInteger(n) || n < 0 || n > 8)) f.push('feld: 0 bis 8');
+      if (doppelte(felder).length) f.push('zwei Figuren im selben Feld');
+      const treffer = fig.map((x, i) => (suche.includes(x.bild) ? i : -1)).filter((i) => i >= 0);
+      for (const id of suche) if (!fig.some((x) => x.bild === id)) f.push(mm(id).name + ' ist nicht in der Szene');
+      if (treffer.length > 4) f.push('höchstens 4 Figuren zum Finden');
+      if (treffer.length === fig.length) f.push('mindestens 1 Figur, die nicht gesucht ist');
+      if (!treffer.some((i) => fig[i].versteck)) f.push('mindestens 1 gesuchte Figur muss versteckt sein');
+      return { fehler: f, loesung: treffer };
+    },
+
+    aufdecken(a) {
+      const f = [];
+      const k = a.karten || [];
+      if (k.length < 4 || k.length > 8 || k.length % 2) return { fehler: ['2 bis 4 Paare (4, 6 oder 8 Karten)'] };
+      k.forEach(mm);
+      const loesung = [];
+      for (const id of new Set(k)) {
+        const orte = k.map((x, i) => (x === id ? i : -1)).filter((i) => i >= 0);
+        if (orte.length !== 2) f.push(mm(id).name + ': ' + orte.length + ' Karten (soll genau 2)');
+        else loesung.push(orte);
+      }
+      if (!f.length && loesung.every(([x, y]) => y === x + 1)) f.push('alle Paare liegen nebeneinander: zu leicht');
+      return { fehler: f, loesung };
+    },
+
+    weggenommen(a) {
+      const f = [];
+      const d = a.dinge || [];
+      const o = a.optionen || [];
+      if (d.length < 3 || d.length > 4) f.push('3 bis 4 Bilder');
+      if (o.length < 2 || o.length > 4) f.push('2 bis 4 Optionen');
+      if (!a.frage) f.push('frage fehlt (der zweite Satz für Mama oder Papa)');
+      if (f.length) return { fehler: f };
+      d.concat(o).forEach(mm);
+      if (doppelte(d).length) f.push('Bild doppelt');
+      if (doppelte(o).length) f.push('Option doppelt');
+      if (d.includes('kobold')) f.push('der Kobold ist der Knopf und darf nicht unter den Bildern sein');
+      if (!d.includes(a.weg)) f.push('weg „' + a.weg + '“ ist nicht unter den Bildern');
+      if (o.filter((x) => x === a.weg).length !== 1) f.push('weg muss genau einmal unter den Optionen sein');
+      return { fehler: f, loesung: o.indexOf(a.weg) };
+    },
+
+    turm(a) {
+      const f = [];
+      const st = a.stufen || [];
+      if (st.length < 3 || st.length > 4) f.push('3 bis 4 Größen');
+      if (!istPermutation(a.anordnung, st.length)) f.push('anordnung muss jede Stufe genau einmal enthalten');
+      if (st.some((s) => !(s > 0 && s <= 1))) f.push('Größen zwischen 0 und 1');
+      const sortiert = st.slice().sort((x, y) => x - y);
+      for (let i = 1; i < sortiert.length; i++) {
+        if (sortiert[i] / sortiert[i - 1] < 1.2 - 1e-9) f.push('Größen ' + sortiert[i - 1] + ' und ' + sortiert[i] + ' zu ähnlich (mindestens 1.2-fach)');
+      }
+      if (f.length) return { fehler: f };
+      mm(a.bild);
+      const gezeigt = a.anordnung.map((i) => st[i]);
+      const loesung = gezeigt.map((s, i) => [s, i]).sort((x, y) => y[0] - x[0]).map((x) => x[1]); // Plätze von groß nach klein
+      if (loesung.every((p, i) => p === i)) f.push('turm: steht schon der Größe nach');
+      return { fehler: f, loesung };
     }
   };
 
@@ -250,6 +346,27 @@
       return [{ zeige: [bild(a.bild, zum ? 'farbe' : 'schatten')], optionen: a.optionen.map((id) => bild(id, zum ? 'schatten' : 'farbe')), richtig: e.loesung }];
     }
     if (a.art === 'paare') return [{ zeige: [bild(a.zeige)], optionen: a.optionen.map((id) => bild(id)), richtig: e.loesung }];
+    if (a.art === 'alle-antippen') {
+      const h = a.hinweis;
+      const zeige = !h ? [] : [h.bild ? bild(h.bild) : { korb: { farbe: h.farbe, etikett: null } }];
+      return [{ zeige, optionen: a.dinge.map((id) => bild(id)), alle: e.loesung }];
+    }
+    if (a.art === 'suchbild') {
+      return [{
+        typ: 'suchbild', brett: true, szene: a.szene,
+        zeige: a.suche.map((id) => bild(id, a.vorlage || 'farbe')),
+        optionen: a.figuren.map((x) => ({ ...bild(x.bild), feld: x.feld, versteck: !!x.versteck })),
+        alle: e.loesung
+      }];
+    }
+    if (a.art === 'aufdecken') return [{ typ: 'aufdecken', brett: true, zeige: [], optionen: a.karten.map((id) => bild(id)), paare: e.loesung }];
+    if (a.art === 'weggenommen') {
+      return [
+        { typ: 'anschauen', zeige: a.dinge.map((id) => bild(id)), optionen: [bild('kobold')], richtig: 0 },
+        { satz: a.frage, zeige: a.dinge.map((id) => (id === a.weg ? { luecke: true } : bild(id))), optionen: a.optionen.map((id) => bild(id)), richtig: e.loesung }
+      ];
+    }
+    if (a.art === 'turm') return [{ typ: 'turm', zeige: [], optionen: a.anordnung.map((i) => bild(a.bild, 'farbe', a.stufen[i])), reihe: e.loesung }];
     throw new Error('schritte: ' + a.art);
   }
 

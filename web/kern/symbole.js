@@ -8,11 +8,13 @@
 //   Symbole.gesicht(art)         froh | mittel | muede (Sammelpass: „Wie hat's dir gefallen?“)
 //   Symbole.punkte(n, farbe)     n Punkte wie am Würfel (1–6), für Nummern ohne Ziffern
 //   Symbole.haus(), Symbole.erwachsene()   Knöpfe der Web-App
+//   Symbole.szene(name), Symbole.versteck(name)   Hintergrund fürs Suchbild und das, wohinter sich Figuren verstecken
+//   Symbole.kartenRuecken()      Rückseite der Aufdeck-Karten
 (function (g) {
   'use strict';
   const T = '#3d3850';
   const strich = (w, farbe) => ' stroke="' + (farbe || T) + '" stroke-width="' + (w || 2) + '" stroke-linecap="round" stroke-linejoin="round"';
-  // Fläche mit Rand in einer dunkleren Farbe (weicher Stil wie Fluent Emoji)
+  // Fläche mit Rand in einer dunkleren Farbe (weicher Stil)
   const weich = (f, w) => ' fill="' + f + '"' + strich(w || 2, g.Bilder.dunkel(f));
   const svg = (inner, vb, klasse) => '<svg class="sym-svg' + (klasse ? ' ' + klasse : '') + '" viewBox="' + (vb || '0 0 72 72') + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' + inner + '</svg>';
   const B = () => g.Bilder;
@@ -119,8 +121,29 @@
   // Pfeil nach rechts (weiter) für die App
   const WEITER = '<path d="M14 36 H54 M38 18 L56 36 L38 54" fill="none"' + strich(7) + '/>';
 
+  // Hinter diesen Dingen verstecken sich die Figuren: Sie decken den unteren Teil der Figur ab (viewBox 0 0 72 40)
+  const VERSTECK = {
+    wiese: '<path d="M2 40 C0 24 10 22 14 26 C12 10 26 8 28 20 C30 4 44 4 45 20 C50 8 62 12 59 26 C66 22 72 30 70 40 Z" fill="#47b45a"/>',
+    meer: '<path d="M2 40 C2 24 14 12 26 18 C32 6 48 6 52 18 C62 14 72 26 70 40 Z" fill="#ff8fa3"/><circle cx="26" cy="28" r="3" fill="#fff" opacity="0.6"/><circle cx="46" cy="24" r="3" fill="#fff" opacity="0.6"/>',
+    himmel: '<path d="M8 40 C-2 40 -2 24 10 24 C10 8 32 6 36 18 C44 6 64 12 60 24 C72 24 72 40 62 40 Z" fill="#fff"/>',
+    zauberwald: '<path d="M2 40 C0 24 12 20 18 24 C20 8 40 6 44 20 C52 10 66 18 62 28 C68 28 72 34 70 40 Z" fill="#8f73d9"/><circle cx="24" cy="30" r="2.5" fill="#fcd53f"/><circle cx="48" cy="28" r="2.5" fill="#fcd53f"/>'
+  };
+  const RUECKEN = '<rect width="72" height="72" rx="10" fill="#7a4fd1"/><path d="' + sternPfad(36, 37, 20, 9) + '" fill="#fcd53f"/>' +
+    '<circle cx="12" cy="12" r="3" fill="#fff" opacity="0.5"/><circle cx="60" cy="12" r="3" fill="#fff" opacity="0.5"/><circle cx="12" cy="60" r="3" fill="#fff" opacity="0.5"/><circle cx="60" cy="60" r="3" fill="#fff" opacity="0.5"/>';
+  function szene(name) {
+    const bild = B().szene(name);
+    if (!bild) throw new Error('Unbekannte Szene: ' + name);
+    return svg('<image width="300" height="300" preserveAspectRatio="xMidYMid slice" href="' + bild + '"/>', '0 0 300 300', 'szene').replace('<svg ', '<svg preserveAspectRatio="xMidYMid slice" ');
+  }
+  function versteck(name) {
+    if (!VERSTECK[name]) throw new Error('Unbekannte Szene: ' + name);
+    return svg(VERSTECK[name], '0 0 72 40', 'versteck-svg').replace('<svg ', '<svg preserveAspectRatio="none" ');
+  }
+
   g.Symbole = {
-    aufgabe, korb, punkte, gesicht,
+    aufgabe, korb, punkte, gesicht, szene, versteck,
+    kartenRuecken: () => svg(RUECKEN),
+    SZENEN: Object.keys(VERSTECK),
     hoehle: () => svg(HOEHLE, null, 'hoehle'),
     stern: (leer) => svg(leer ? STERN_LEER : STERN_VOLL, null, leer ? 'stern leer' : 'stern'),
     haus: () => svg(HAUS), erwachsene: () => svg(ERWACHSENE), weiter: () => svg(WEITER),

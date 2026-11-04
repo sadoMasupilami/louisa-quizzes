@@ -22,9 +22,10 @@
     "w-hase": { "art": "paare", "beziehung": "frisst", "satz": "Was frisst der Hase am liebsten?", "zeige": "hase", "optionen": ["knochen", "karotte", "kaese"] },
     "w-socke": { "art": "paare", "beziehung": "gleich", "satz": "Welche Socke ist genau gleich?", "zeige": "socke-punkte-gelb", "optionen": ["socke-punkte-blau", "socke-streifen-gelb", "socke-punkte-gelb"] },
     "w-vogel": { "art": "paare", "beziehung": "gehoert", "satz": "Wo wohnt der Vogel?", "zeige": "vogel", "optionen": ["welle", "nest", "feuer"] },
-    "w-baer": { "art": "paare", "beziehung": "frisst", "satz": "Was schleckt der Bär so gern?", "zeige": "baer", "optionen": ["knochen", "nuss", "honig"] },
     "w-zauberer": { "art": "paare", "beziehung": "gehoert", "satz": "Was gehört dem Zauberer?", "zeige": "zauberer", "optionen": ["pilz", "kristallkugel", "welle"] },
-    "w-socke-schwer": { "art": "paare", "beziehung": "gleich", "satz": "Ganz genau schauen: Welche Socke ist gleich?", "zeige": "socke-herzen-blau", "optionen": ["socke-herzen-rot", "socke-punkte-blau", "socke-herzen-blau", "socke-uni-blau"] }
+    "w-socke-schwer": { "art": "paare", "beziehung": "gleich", "satz": "Ganz genau schauen: Welche Socke ist gleich?", "zeige": "socke-herzen-blau", "optionen": ["socke-herzen-rot", "socke-punkte-blau", "socke-herzen-blau", "socke-uni-blau"] },
+    "w-aufdecken-2": {"art":"aufdecken","satz":"Dreh immer zwei Karten um. Wo sind die zwei gleichen?","karten":["hase","eule","hase","eule"]},
+    "w-aufdecken-3": {"art":"aufdecken","satz":"Jetzt drei Paare. Merk dir gut, wo was liegt!","karten":["fuchs","pilz","wal","pilz","fuchs","wal"]}
   },
-  "web": { "levels": ["w-hase", "w-socke", "w-vogel", "w-baer", "w-zauberer", "w-socke-schwer"] }
+  "web": { "levels": ["w-hase","w-socke","w-vogel","w-aufdecken-2","w-zauberer","w-socke-schwer","w-aufdecken-3"] }
 }

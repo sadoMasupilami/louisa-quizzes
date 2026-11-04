@@ -18,11 +18,12 @@
       "dinge": ["form-kreis-rot", "form-dreieck-rot", "form-viereck-blau", "form-kreis-blau", "form-stern-rot", "form-dreieck-gruen", "form-kreis-gelb", "form-herz-blau", "form-viereck-gelb"]
     },
     "w-hase": { "art": "schatten", "satz": "Welcher Schatten gehört zum Hasen?", "richtung": "zum-schatten", "bild": "hase", "optionen": ["fisch", "hase", "schnecke"] },
-    "w-elefant": { "art": "schatten", "satz": "Und welcher zum Elefanten?", "richtung": "zum-schatten", "bild": "elefant", "optionen": ["giraffe", "kueken", "elefant"] },
     "w-drache": { "art": "schatten", "satz": "Jetzt andersrum: Wem gehört dieser Schatten?", "richtung": "zum-bild", "bild": "drache", "optionen": ["drache", "einhorn", "schmetterling"] },
-    "w-eule": { "art": "schatten", "satz": "Vier Schatten. Welcher gehört zur Eule?", "richtung": "zum-schatten", "bild": "eule", "optionen": ["vogel", "papagei", "eule", "schmetterling"] },
     "w-pferd": { "art": "schatten", "satz": "Wem gehört dieser Schatten? Schau genau auf den Kopf!", "richtung": "zum-bild", "bild": "pferd", "optionen": ["einhorn", "schaf", "pferd"] },
-    "w-katze": { "art": "schatten", "satz": "Ganz schwer: Welcher Schatten gehört zur Katze?", "richtung": "zum-schatten", "bild": "katze", "optionen": ["fuchs", "hund", "maus", "katze"] }
+    "w-katze": { "art": "schatten", "satz": "Ganz schwer: Welcher Schatten gehört zur Katze?", "richtung": "zum-schatten", "bild": "katze", "optionen": ["fuchs", "hund", "maus", "katze"] },
+    "w-alle-kreise": {"art":"alle-antippen","satz":"Tipp alle Kreise an. Die Farbe ist egal.","hinweis":{"bild":"form-kreis-gelb"},"bedingung":{"merkmal":"form","wert":"kreis"},"dinge":["form-kreis-rot","form-dreieck-blau","form-kreis-blau","form-stern-gelb"]},
+    "w-suche-meer": {"art":"suchbild","szene":"meer","satz":"Detektivin, schau genau: Wo sind der Fisch und der Oktopus?","suche":["fisch","oktopus"],"figuren":[{"bild":"delfin","feld":0},{"bild":"fisch","feld":2,"versteck":true},{"bild":"wal","feld":4},{"bild":"oktopus","feld":6,"versteck":true},{"bild":"schildkroete","feld":8}]},
+    "w-suche-zauberwald": {"art":"suchbild","szene":"zauberwald","vorlage":"schatten","satz":"Das ist ein Schatten. Wer versteckt sich im Zauberwald und gehört dazu?","suche":["einhorn"],"figuren":[{"bild":"fee","feld":0},{"bild":"pilz","feld":2},{"bild":"pferd","feld":3},{"bild":"einhorn","feld":5,"versteck":true},{"bild":"drache","feld":7}]}
   },
-  "web": { "levels": ["w-hase", "w-elefant", "w-drache", "w-eule", "w-pferd", "w-katze"] }
+  "web": { "levels": ["w-hase","w-alle-kreise","w-drache","w-suche-meer","w-pferd","w-katze","w-suche-zauberwald"] }
 }

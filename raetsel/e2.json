@@ -48,16 +48,13 @@
       "satz": "Tipp die Eulen der Reihe nach an: zuerst die kleinste, zum Schluss die größte.",
       "bild": "eule", "frage": "ordnen", "stufen": [0.5, 0.75, 1], "anordnung": [2, 0, 1]
     },
-    "w-ordnen-4": {
-      "art": "groesse",
-      "satz": "Jetzt vier Drachen: vom kleinsten bis zum größten antippen.",
-      "bild": "drache", "frage": "ordnen", "stufen": [0.45, 0.6, 0.8, 1], "anordnung": [2, 0, 3, 1]
-    },
     "w-knapp": {
       "art": "groesse", "knapp": true,
       "satz": "Ganz genau schauen: Welcher Wal ist der größte?",
       "bild": "wal", "frage": "groesste", "stufen": [0.7, 0.8, 0.9, 1], "anordnung": [2, 0, 3, 1]
-    }
+    },
+    "w-turm-3": {"art":"turm","satz":"Wir bauen einen Teddy-Turm! Der größte kommt nach unten. Welcher zuerst?","bild":"teddy","stufen":[0.5,0.75,1],"anordnung":[1,0,2]},
+    "w-turm-4": {"art":"turm","satz":"Jetzt vier Geschenke: unten das größte, oben das kleinste.","bild":"geschenk","stufen":[0.45,0.6,0.8,1],"anordnung":[2,0,3,1]}
   },
-  "web": { "levels": ["w-groesster", "w-kleinste", "w-groesstes-4", "w-ordnen-3", "w-ordnen-4", "w-knapp"] }
+  "web": { "levels": ["w-groesster","w-kleinste","w-groesstes-4","w-ordnen-3","w-turm-3","w-knapp","w-turm-4"] }
 }

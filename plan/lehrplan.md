@@ -113,14 +113,14 @@ Merkmale, nach denen sortiert wird, heißen für das Kind: **Farbe**, **Form**, 
 
 ### 7.3 Bilder-Sammlung (`bilder/katalog.json`, `web/kern/bilder.js`)
 
-- Tiere, Fantasie-Wesen, Essen, Pflanzen und Dinge aus **Fluent Emoji** von Microsoft (MIT-Lizenz), weicher Stil („Color“), lokal in `bilder/fluent/`. Menschen-Figuren (Fee, Zauberer, Meerjungfrau) im Hautton „Light“.
+- Tiere, Fantasie-Wesen, Essen, Pflanzen und Dinge sind eigens erzeugt (weich, rund, freundlich), Beschreibungen in `bilder/motive.json`, Dateien in `bilder/erzeugt/`. Dazu vier Szenen fürs Suchbild (Wiese, Meer, Himmel, Zauberwald).
 - Selbst gezeichnet im selben weichen Stil (Ränder in einer dunkleren Farbe statt schwarz): der **Fehler-Kobold** (wie in der Werkstatt der großen Schwester), **Formen** `form-<kreis|dreieck|viereck|stern|herz>-<rot|blau|gelb|gruen>`, **Socken** `socke-<uni|streifen|punkte|herzen>-<farbe>`, Körbe, Höhle, Stern, Gesichter, Würfelpunkte.
-- Jedes Bild gibt es in drei Stilen: **Farbe**, **Umriss** (zum Anmalen, aus der flachen Fluent-Variante), **Schatten** (alle Flächen dunkel).
+- Jedes Bild gibt es in drei Stilen: **Farbe**, **Umriss** (zum Anmalen, eigene Linienzeichnung), **Schatten** (aus der Form des Farbbilds, alle Flächen dunkel).
 - Jedes Bild hat **Merkmale**: `art` (tier, wesen, essen, pflanze, ding, form), `farbe` (nur wenn ein Kind sie sofort nennt, sonst leer), `bewegt` (schwimmt, fliegt, läuft, nur wenn eindeutig: Ente, Frosch, Schnecke haben keins), `frisst`, `gehoert`. Damit prüft der Build jede Aufgabe.
 
 ### 7.4 Farben und Größen auf den Blättern
 
-- Nur gut unterscheidbare Farben (rot, gelb, blau, grün wie in Fluent Emoji). Wo Farbe die Aufgabe ist, steht „in Farbe drucken“ bei der Vorbereitung.
+- Nur gut unterscheidbare Farben (rot, gelb, blau, grün). Wo Farbe die Aufgabe ist, steht „in Farbe drucken“ bei der Vorbereitung.
 - Bilder mindestens **2,5 cm**, verkleinerte Bilder in Größen-Aufgaben mindestens 1,2 cm. Ausschneide-Karten mindestens **5 cm**, gerade Schnitte, gemeinsame dicke Schneidelinien. Gitterfelder (ab Block C) mindestens 4 cm.
 - Mengen als **Punkte** wie am Würfel, nicht als Ziffern.
 
@@ -140,23 +140,28 @@ Merkmale, nach denen sortiert wird, heißen für das Kind: **Farbe**, **Form**, 
 | `groesse` | Größen mindestens 1,2-fach verschieden (im Schwerer-Teil „knapp“ 1,1-fach), beim Ordnen nicht schon geordnet |
 | `groessen-paare`, `schatten-paare`, `paare-verbinden` | Jedes Bild links hat genau einen Partner rechts und umgekehrt, nicht alle gerade nebeneinander |
 | `schatten`, `paare` | Genau eine Antwort passt |
+| `alle-antippen` (nur App) | 3 bis 4 Bilder, jedes hat das Merkmal sicher, mindestens 2 Treffer und 1 anderes |
+| `suchbild` (nur App) | Jedes Gesuchte ist in der Szene, jedes Feld nur einmal belegt, mindestens eine gesuchte Figur versteckt und eine Figur nicht gesucht |
+| `aufdecken` (nur App) | 2 bis 4 Paare, jedes Bild genau zweimal, nicht alle Paare nebeneinander |
+| `weggenommen` (nur App) | Das Weggenommene war zu sehen und steht genau einmal unter den Antworten |
+| `turm` (nur App) | 3 bis 4 Größen, mindestens 1,2-fach verschieden, nicht schon geordnet |
 
 ### 7.7 Web-Pakete
 
 | Paket | Einheit | Levels | Art |
 |---|---|---|---|
-| e1 | 1 | 5 | Körbe (Farbe, schwimmt/fliegt/läuft, Tier/Fantasie) |
-| e2 | 2 | 6 | größte/kleinste antippen, der Reihe nach antippen |
-| e3 | 3 | 6 | was passt nicht |
-| e4 | 4 | 6 | Bild zum Schatten und Schatten zum Bild |
-| e5 | 5 | 6 | Futter, Zuhause, gleiche Socke |
+| e1 | 1 | 7 | Körbe (Farbe, schwimmt/fliegt/läuft, Tier/Fantasie), Tipp alle an, Suchbild Wiese |
+| e2 | 2 | 7 | größte/kleinste antippen, der Reihe nach antippen, Turm bauen |
+| e3 | 3 | 7 | was passt nicht, Suchbild Himmel, Was hat der Kobold weggenommen? |
+| e4 | 4 | 7 | Bild zum Schatten und Schatten zum Bild, Tipp alle Kreise an, Suchbild Meer und Zauberwald |
+| e5 | 5 | 7 | Futter, Zuhause, gleiche Socke, Paare aufdecken |
 
 ## 8. Bildschirm-Regeln (für alle Einheiten)
 
 - Höchstens **5 Minuten** pro Einheit, am Schluss, gemeinsam, nie Pflicht.
 - **Kein Ton.** Mama oder Papa liest den kleinen Satz und sagt die Aufgabe.
-- Nur Antippen, Tippflächen mindestens 72 px, höchstens 4 Antworten auf einmal.
-- Falsch: das Bild wackelt, sonst nichts. Richtig: es hüpft, nach jedem Level ein Stern.
+- Nur Antippen, Tippflächen mindestens 72 px, höchstens 4 Antworten auf einmal. Ausnahme sind die Spielbretter (Suchbild, Aufdecken) mit bis zu 8 Flächen, in einem festen Gitter mit 16 px Abstand.
+- Falsch: das Bild wackelt, sonst nichts. Richtig: es hüpft, nach jedem Level ein Stern. Keine Zeitgrenzen: Auch der Kobold nimmt erst etwas weg, wenn das Kind ihn antippt.
 - Ein Paket hat 4–7 Levels, dann ein Ende-Bild. Danach kommt das Gerät weg.
 
 ## 9. Rückmeldung einarbeiten

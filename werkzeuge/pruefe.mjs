@@ -59,7 +59,7 @@ export function pruefeAlle(ordner) {
       }
       if (levels.length < 3 || levels.length > 7) fehler.push(d + ' → web: ' + levels.length + ' Levels, erlaubt sind 3 bis 7 (ein Paket ist kurz)');
       for (const l of levels) {
-        for (const s of l.schritte) if (s.optionen.length > 4) fehler.push(d + ' → web ' + l.id + ': höchstens 4 Antworten auf einmal');
+        for (const s of l.schritte) if (!s.brett && s.optionen.length > 4) fehler.push(d + ' → web ' + l.id + ': höchstens 4 Antworten auf einmal');
       }
       pakete[key] = { paket: key, einheit: e.einheit, titel: e.titel, bild: e.web.bild || e.bild, levels };
     }

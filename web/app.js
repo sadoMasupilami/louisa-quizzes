@@ -57,6 +57,7 @@
   // ---------------------------------------------------------------------
   function inhalt(ref) {
     if (ref.korb) return S.korb(ref.korb.farbe, ref.korb.etikett);
+    if (ref.luecke) return '<div class="luecke"></div>';
     const g = Math.round((ref.gross || 1) * 1000) / 10;
     return '<div class="innen"><div style="width:' + g + '%;height:' + g + '%">' + bild(ref.bild, ref.stil) + '</div></div>';
   }
@@ -79,35 +80,99 @@
     const zeige = app.querySelector('.zeige');
     const optionen = app.querySelector('.optionen');
 
+    // Eine Antwort-Fläche, je nach Spielart mit Versteck (Suchbild) oder Rückseite (Aufdecken)
+    function option(s, r, i) {
+      let cls = 'option' + (r.korb ? ' korb' : '');
+      let style = '';
+      let extra = '';
+      if (s.typ === 'suchbild') {
+        cls += ' figur';
+        style = ' style="grid-row:' + (Math.floor(r.feld / 3) + 1) + ';grid-column:' + (r.feld % 3 + 1) + '"';
+        if (r.versteck) extra = '<div class="versteck">' + S.versteck(s.szene) + '</div>';
+      }
+      if (s.typ === 'aufdecken') {
+        cls += ' karte';
+        extra = '<div class="ruecken">' + S.kartenRuecken() + '</div>';
+      }
+      return '<button class="' + cls + '" data-i="' + i + '"' + style + ' aria-label="Antwort ' + (i + 1) + '">' + inhalt(r) + extra + '</button>';
+    }
+
     function zeigeSchritt() {
       const s = l.schritte[zustand.schritt];
       zustand.reihe = 0;
       zustand.gesperrt = false;
-      zeige.className = 'zeige' + (s.zeige.length ? '' : ' leer');
+      zustand.aufgedeckt = null;
+      app.querySelector('.satz').textContent = s.satz || l.satz;
+      const karten = s.zeige.length;
+      zeige.className = 'zeige' + (karten || s.typ === 'turm' ? '' : ' leer') + (karten > 1 ? ' viele' : '') + (s.typ === 'turm' ? ' turm-platz' : '');
+      zeige.style.setProperty('--n', karten || 1);
       zeige.innerHTML = s.zeige.map((r) => '<div class="vorne">' + inhalt(r) + '</div>').join('') +
+        (s.typ === 'turm' ? '<div class="turm-stapel"></div>' : '') +
         (l.schritte.length > 1 ? '<div class="schritte">' + l.schritte.map((_, i) => '<div class="s' + (i < zustand.schritt ? ' fertig' : '') + '"></div>').join('') + '</div>' : '');
-      optionen.className = 'optionen n' + s.optionen.length + (s.unten ? ' unten' : '');
-      optionen.innerHTML = s.optionen.map((r, i) => '<button class="option' + (r.korb ? ' korb' : '') + '" data-i="' + i + '" aria-label="Antwort ' + (i + 1) + '">' + inhalt(r) + '</button>').join('');
+      app.querySelector('.level').className = 'level' + (s.typ ? ' ' + s.typ : '');
+      optionen.className = 'optionen n' + s.optionen.length + (s.unten ? ' unten' : '') + (s.brett ? ' brett' : '');
+      optionen.innerHTML = (s.typ === 'suchbild' ? '<div class="szene-bild">' + S.szene(s.szene) + '</div>' : '') +
+        s.optionen.map((r, i) => option(s, r, i)).join('');
       optionen.querySelectorAll('.option').forEach((o) => o.addEventListener('click', () => tippe(o, +o.dataset.i)));
       document.body.dataset.stand = k + '/' + li + '/' + zustand.schritt; // für die Tests
+    }
+
+    function wackle(o) {
+      o.classList.remove('falsch');
+      void o.offsetWidth; // Animation neu starten
+      o.classList.add('falsch');
+    }
+
+    // Der Turm wächst von unten: jedes Teil so hoch, wie es seiner Größe am ganzen Turm entspricht
+    function baueAufTurm(s, r) {
+      const summe = s.optionen.reduce((n, x) => n + x.gross, 0);
+      zeige.querySelector('.turm-stapel').insertAdjacentHTML('beforeend', '<div class="teil" style="height:' + (r.gross / summe * 100).toFixed(1) + '%">' + bild(r.bild, r.stil) + '</div>');
+    }
+
+    // Aufdecken: zwei Karten umdrehen. Gleich: Sie bleiben offen. Sonst wackeln sie und drehen sich wieder um.
+    async function deckeAuf(s, o, i) {
+      if (o.classList.contains('offen')) return;
+      o.classList.add('offen');
+      const erste = zustand.aufgedeckt;
+      if (!erste) { zustand.aufgedeckt = o; return; }
+      zustand.aufgedeckt = null;
+      if (s.optionen[+erste.dataset.i].bild === s.optionen[i].bild) {
+        erste.classList.add('erledigt', 'gefunden');
+        o.classList.add('erledigt', 'gefunden');
+        zustand.reihe++;
+        if (zustand.reihe === s.paare.length) await schrittGeschafft(o);
+        return;
+      }
+      wackle(erste);
+      wackle(o);
+      zustand.gesperrt = true;
+      await warte(1100);
+      if (meinLauf !== lauf) return;
+      for (const karte of [erste, o]) karte.classList.remove('offen', 'falsch');
+      zustand.gesperrt = false;
     }
 
     async function tippe(o, i) {
       if (zustand.gesperrt || o.classList.contains('erledigt') || meinLauf !== lauf) return;
       const s = l.schritte[zustand.schritt];
-      const soll = s.reihe ? s.reihe[zustand.reihe] : s.richtig;
-      if (i !== soll) {
-        o.classList.remove('falsch');
-        void o.offsetWidth; // Animation neu starten
-        o.classList.add('falsch');
-        return;
-      }
-      if (s.reihe) {
+      if (s.typ === 'aufdecken') return deckeAuf(s, o, i);
+      const stimmt = s.alle ? s.alle.includes(i) : i === (s.reihe ? s.reihe[zustand.reihe] : s.richtig);
+      if (!stimmt) { wackle(o); return; }
+      if (s.alle) {
+        o.classList.add('erledigt', 'treffer');
+        zustand.reihe++;
+        if (zustand.reihe < s.alle.length) return;
+      } else if (s.reihe) {
         o.classList.add('erledigt');
-        o.insertAdjacentHTML('beforeend', '<div class="nr">' + S.punkte(zustand.reihe + 1, '#3aa356') + '</div>');
+        if (s.typ === 'turm') baueAufTurm(s, s.optionen[i]);
+        else o.insertAdjacentHTML('beforeend', '<div class="nr">' + S.punkte(zustand.reihe + 1, '#3aa356') + '</div>');
         zustand.reihe++;
         if (zustand.reihe < s.reihe.length) return;
       }
+      await schrittGeschafft(o);
+    }
+
+    async function schrittGeschafft(o) {
       zustand.gesperrt = true;
       o.classList.add('richtig');
       // Beim Sortieren fliegt das Bild in den Korb
@@ -169,7 +234,7 @@
       '<p>Diese App gehört zur Schau- und Spiel-Werkstatt (Guide zum Ausdrucken). Sie ist ein kurzer Bonus: höchstens 5 Minuten, gemeinsam, ohne Ton. Du sagst die Aufgabe (der kleine graue Satz), dein Kind tippt.</p>' +
       '<div class="zeile"><button class="knopf-text loeschen">Fortschritt löschen</button><button class="knopf-text hell zu">Zurück</button></div>' +
       '<p><small>Die Sterne bleiben nur in diesem Browser. Die App sammelt nichts und lädt nichts aus dem Internet nach.</small></p>' +
-      '<p><small>Bilder: Fluent Emoji von Microsoft (github.com/microsoft/fluentui-emoji), MIT-Lizenz. Der Fehler-Kobold, die Formen, die Socken und die Knöpfe sind selbst gezeichnet. Version ' + (window.WERKSTATT_VERSION || '') + '</small></p></div>';
+      '<p><small>Bilder: eigens für diese Werkstatt erzeugt. Der Fehler-Kobold, die Formen, die Socken und die Knöpfe sind selbst gezeichnet. Version ' + (window.WERKSTATT_VERSION || '') + '</small></p></div>';
     overlay.querySelector('.loeschen').addEventListener('click', (e) => {
       if (e.target.dataset.sicher) { speichere({}); schliessen(); route(); return; }
       e.target.dataset.sicher = '1';

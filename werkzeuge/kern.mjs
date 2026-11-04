@@ -8,21 +8,29 @@ import { fileURLToPath } from 'node:url';
 export const WURZEL = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const KERN_DATEIEN = ['bilder.js', 'symbole.js', 'aufgaben.js'];
 
-// Katalog und SVG-Dateien der Bilder-Sammlung (bilder/fluent/<stil>/<id>.svg)
+// Katalog und SVG-Dateien der Bilder-Sammlung (bilder/erzeugt/<stil>/<id>.svg)
 export function bilderDaten() {
   const katalog = JSON.parse(fs.readFileSync(path.join(WURZEL, 'bilder', 'katalog.json'), 'utf8')).bilder;
   const svg = {};
-  const ordner = path.join(WURZEL, 'bilder', 'fluent');
+  const erzeugt = path.join(WURZEL, 'bilder', 'erzeugt');
   for (const [id, b] of Object.entries(katalog)) {
-    if (!b.quelle.startsWith('fluent:')) continue;
+    if (b.quelle !== 'erzeugt') continue;
     const lies = (sub) => {
-      const f = path.join(ordner, sub, id + '.svg');
-      if (!fs.existsSync(f)) throw new Error('Bild fehlt: bilder/fluent/' + sub + '/' + id + '.svg (node werkzeuge/bilder-holen.mjs)');
+      const f = path.join(erzeugt, sub, id + '.svg');
+      if (!fs.existsSync(f)) throw new Error('Bild fehlt: bilder/erzeugt/' + sub + '/' + id + '.svg (werkzeuge/bilder-verarbeiten.sh)');
       return fs.readFileSync(f, 'utf8').trim();
     };
     svg[id] = { farbe: lies('farbe'), umriss: lies('umriss'), schatten: lies('schatten') };
   }
-  return { katalog, svg };
+  // Szenen fürs Suchbild als data-Adresse: Die App lädt nichts nach
+  const szenen = {};
+  const szenenOrdner = path.join(erzeugt, 'szenen');
+  if (fs.existsSync(szenenOrdner)) {
+    for (const d of fs.readdirSync(szenenOrdner).filter((x) => x.endsWith('.webp'))) {
+      szenen[d.slice(0, -5)] = 'data:image/webp;base64,' + fs.readFileSync(path.join(szenenOrdner, d)).toString('base64');
+    }
+  }
+  return { katalog, svg, szenen };
 }
 
 // Als Skript für den Browser (vor den Kern-Dateien laden). nur: Liste von Bild-ids, sonst alle

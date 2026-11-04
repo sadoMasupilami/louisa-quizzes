@@ -4,7 +4,7 @@ Ein druckbarer Guide plus eine kleine Web-App, mit dem ein Elternteil mit seiner
 
 **Das Kind kann noch nicht lesen.** Auf den Blättern und in der App steht deshalb kein Text für sie: Aufgaben-Bilder zeigen, was zu tun ist (anmalen, einkreisen, verbinden, ausschneiden, kleben), und Mama oder Papa sagt die Aufgabe. Fast alles läuft mit Bewegung, Kuscheltieren, Malen, Schneiden und Kleben. Die App ist ein kurzer, gemeinsamer Bonus (höchstens 5 Minuten, ohne Ton).
 
-Stand: **Block A (Einheiten 1–5)** ist ausformuliert: Das Einhorn räumt auf (Sortieren), Drachen groß und klein (Größen), Der Kobold schummelt (Was passt nicht?), Schatten-Detektivin (Schatten und Formen), Wer gehört zu wem? (Paare). Dazu 5 Web-Pakete mit 29 Levels. Plan für alle 20 Einheiten: `plan/lehrplan.md`. Auftrag mit allen Wünschen: `AUFTRAG.md`.
+Stand: **Block A (Einheiten 1–5)** ist ausformuliert: Das Einhorn räumt auf (Sortieren), Drachen groß und klein (Größen), Der Kobold schummelt (Was passt nicht?), Schatten-Detektivin (Schatten und Formen), Wer gehört zu wem? (Paare). Dazu 5 Web-Pakete mit 35 Levels und mehreren Spielarten: das Richtige antippen, Körbe, der Reihe nach, Tipp alle an, Suchbild, Paare aufdecken, „Was hat der Kobold weggenommen?“ und Turm bauen. Plan für alle 20 Einheiten: `plan/lehrplan.md`. Auftrag mit allen Wünschen: `AUFTRAG.md`.
 
 ## Ergebnis
 
@@ -73,7 +73,7 @@ node werkzeuge/web-bauen.mjs   # web/ + Aufgaben + Bilder → _site/
 npx playwright test            # jedes Level auf Handy und Tablet, hoch und quer, durchspielen
 ```
 
-Die Tests spielen jedes Level einmal durch (mit einem falschen Tipp vorher), öffnen jedes Level direkt über die Adresse, prüfen Tippflächen (mindestens 72 px), dass nichts scrollt, dass keine fremden Hosts angefragt werden und die Konsole fehlerfrei bleibt, testen „Für Erwachsene“ und den Offline-Betrieb, und machen Bildschirmfotos (`test-results/bilder/<projekt>/`). Geräte: iPhone 8 (375 · 667) hoch und quer, iPhone SE (320 · 568), Pixel 5, iPad hoch und quer. **WebKit** (die Safari-Engine) läuft mit, wenn es installiert ist (`npx playwright install webkit`, unter Linux zusätzlich `npx playwright install-deps webkit`), sonst nur Chromium.
+Die Tests spielen jedes Level einmal durch und probieren dabei jede Spielart auch falsch aus, öffnen jedes Level direkt über die Adresse, prüfen Tippflächen (mindestens 72 px), dass nichts scrollt, dass keine fremden Hosts angefragt werden und die Konsole fehlerfrei bleibt, testen „Für Erwachsene“ und den Offline-Betrieb, und machen Bildschirmfotos (`test-results/bilder/<projekt>/`). Geräte: iPhone 8 (375 · 667) hoch und quer, iPhone SE (320 · 568), Pixel 5, iPad hoch und quer. **WebKit** (die Safari-Engine) läuft mit, wenn es installiert ist (`npx playwright install webkit`, unter Linux zusätzlich `npx playwright install-deps webkit`), sonst nur Chromium.
 
 Zum Ausprobieren: `node tests/server.mjs` und `http://localhost:4173/` öffnen.
 
@@ -93,7 +93,8 @@ AUFTRAG.md                       Auftrag mit allen Wünschen und Entscheidungen
 plan/lehrplan.md                 Plan für 20 Einheiten, Begriffsliste, Aufgaben-Bilder, Bilder, Regeln
 vorlagen/AUTOREN-LEITFADEN.md    wie man eine Einheit schreibt, alle Bausteine, Datenformat
 bilder/katalog.json              Bilder-Sammlung mit Merkmalen
-bilder/fluent/                   Fluent-Emoji-Bilder (Farbe, Umriss, Schatten; MIT-Lizenz, siehe HERKUNFT.md)
+bilder/motive.json               Beschreibung jedes Bildes und jeder Szene
+bilder/erzeugt/                  Bilder (Farbe, Umriss, Schatten) und Szenen, siehe HERKUNFT.md
 raetsel/eN.json                  Aufgaben und Web-Levels pro Einheit (eine Datenquelle für Papier und App)
 src/buch.json                    Reihenfolge der Teile im Buch
 src/rahmen/                      Titel, Inhalt, Einleitung, Hallo-Seite, Sammelpass, Rückmeldebogen, Gerätetest
@@ -102,7 +103,7 @@ src/styles.css, src/components.js  Design, Bausteine, Lösungsansicht, Prüfunge
 src/fonts/                       Andika und Nunito (SIL Open Font License)
 web/                             Web-App (index.html, app.js, app.css, Service Worker, Manifest, Symbole)
 web/kern/                        Bilder, Symbole und Aufgaben-Kern, gemeinsam für App, Blätter und Prüfung
-werkzeuge/                       Prüfung, Namens-Prüfung, Web-App bauen, Bilder holen, mit-nix.sh
+werkzeuge/                       Prüfung, Namens-Prüfung, Web-App bauen, Bilder erzeugen und verarbeiten, mit-nix.sh
 tests/                           Tests für den Kern und die Web-App
 build.mjs, baue.sh               PDFs bauen
 werkstatt.json                   Titel und Stand (ohne Namen, ohne Adresse)
@@ -112,4 +113,4 @@ kind.beispiel.json               Vorlage für kind.json (lokal, nie einchecken)
 
 ## Lizenzen
 
-Bilder der Tiere und Dinge: [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) von Microsoft, MIT-Lizenz (`bilder/fluent/LICENSE.txt`). Schriften: Andika und Nunito, SIL Open Font License (`src/fonts/`). Fehler-Kobold, Formen, Socken, Körbe und Aufgaben-Bilder sind selbst gezeichnet.
+Bilder der Tiere und Dinge sowie die Szenen sind eigens für diese Werkstatt erzeugt (`bilder/erzeugt/HERKUNFT.md`). Schriften: Andika und Nunito, SIL Open Font License (`src/fonts/`). Fehler-Kobold, Formen, Socken, Körbe und Aufgaben-Bilder sind selbst gezeichnet.

@@ -1,11 +1,11 @@
 // Bilder-Sammlung: ein Ort für alle Bilder (Blätter, Anleitung, Web-App, Prüfung).
 //
-//   Bilder.init({ katalog, svg })   katalog aus bilder/katalog.json, svg: { id: { farbe, umriss, schatten } } aus bilder/fluent/
+//   Bilder.init({ katalog, svg })   katalog aus bilder/katalog.json, svg: { id: { farbe, umriss, schatten } } aus bilder/erzeugt/
 //   Bilder.merkmale(id)              { id, name, art, farbe, bewegt, form, muster, frisst, gehoert } oder null
 //   Bilder.svg(id, { stil, klasse }) stil: 'farbe' (Standard) | 'umriss' (zum Anmalen) | 'schatten'
 //   Bilder.alle()                    alle ids aus dem Katalog
 //
-// Die Tiere und Dinge sind Fluent Emoji (Microsoft, MIT-Lizenz), viewBox 0 0 32 32.
+// Die Tiere und Dinge kommen aus bilder/erzeugt/ (siehe bilder/erzeugt/HERKUNFT.md), viewBox 0 0 512 512.
 // Selbst gezeichnet im selben weichen Stil (ohne schwarze Ränder, Ränder in einer dunkleren Farbe), viewBox 0 0 72 72:
 //   kobold (der Fehler-Kobold)
 //   form-<kreis|dreieck|viereck|stern|herz>-<rot|blau|gelb|gruen>
@@ -15,7 +15,7 @@
 
   const TINTE = '#1f2340';
   const SCHATTEN = '#3b3d4f';
-  // Farben wie in Fluent Emoji
+  // Kräftige, klare Grundfarben
   const FARBEN = { rot: '#f8312f', blau: '#00a6ed', gelb: '#fcd53f', gruen: '#00d26a', orange: '#ff822d', lila: '#8d65c5', rosa: '#ff6dc6', braun: '#a56953', grau: '#9b9b9b' };
   const FARB_NAMEN = { rot: 'rot', blau: 'blau', gelb: 'gelb', gruen: 'grün', orange: 'orange', braun: 'braun', grau: 'grau', rosa: 'rosa', weiss: 'weiß', lila: 'lila', schwarz: 'schwarz' };
   const FORM_NAMEN = { kreis: 'der Kreis', dreieck: 'das Dreieck', viereck: 'das Viereck', stern: 'der Stern', herz: 'das Herz' };
@@ -23,8 +23,9 @@
 
   let katalog = {};
   let svgDaten = {};
+  let szenenDaten = {};
 
-  // Dunklere Variante einer Farbe (für Ränder, wie bei Fluent)
+  // Dunklere Variante einer Farbe (für Ränder)
   function dunkel(hex, anteil) {
     const a = anteil == null ? 0.7 : anteil;
     const n = parseInt(hex.slice(1), 16);
@@ -159,7 +160,8 @@
   let zaehler = 0;
 
   g.Bilder = {
-    init(daten) { katalog = daten.katalog || {}; svgDaten = daten.svg || {}; },
+    init(daten) { katalog = daten.katalog || {}; svgDaten = daten.svg || {}; szenenDaten = daten.szenen || {}; },
+    szene: (name) => szenenDaten[name] || null,
     merkmale, svg, dunkel,
     gibt: (id) => merkmale(id) !== null,
     alle: () => Object.keys(katalog),

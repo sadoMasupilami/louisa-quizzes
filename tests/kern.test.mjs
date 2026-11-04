@@ -83,14 +83,74 @@ test('ausmalen: unklare Bilder sind verboten', () => {
   assert.match(fehler({ art: 'ausmalen', bedingung: { merkmal: 'bewegt', wert: 'fliegt' }, dinge: ['eule', 'biene', 'frosch', 'hund'] }).join(), /Frosch: bewegt unklar/);
 });
 
+test('alle-antippen: Treffer, unklare Bilder, keine Falschen', () => {
+  const fliegt = { merkmal: 'bewegt', wert: 'fliegt' };
+  assert.deepEqual([...Aufgaben.pruefe({ art: 'alle-antippen', satz: 'x', bedingung: fliegt, dinge: ['eule', 'hund', 'biene', 'fisch'] }).loesung], [0, 2]);
+  assert.match(fehler({ art: 'alle-antippen', bedingung: fliegt, dinge: ['eule', 'frosch', 'biene'] }).join(), /Frosch: bewegt unklar/);
+  assert.match(fehler({ art: 'alle-antippen', bedingung: fliegt, dinge: ['eule', 'biene', 'vogel'] }).join(), /nicht passt/);
+  assert.match(fehler({ art: 'alle-antippen', bedingung: fliegt, dinge: ['eule', 'hund', 'fisch'] }).join(), /mindestens 2/);
+  assert.match(fehler({ art: 'alle-antippen', bedingung: fliegt, dinge: ['eule', 'biene', 'hund', 'fisch', 'wal'] }).join(), /3 bis 4/);
+});
+
+test('suchbild: Szene, Felder, Verstecke', () => {
+  const gut = { art: 'suchbild', szene: 'wiese', suche: ['hase'], figuren: [{ bild: 'hase', feld: 0, versteck: true }, { bild: 'hase', feld: 4 }, { bild: 'igel', feld: 8 }] };
+  assert.deepEqual(fehler(gut), []);
+  assert.deepEqual([...Aufgaben.pruefe({ ...gut, satz: 'x' }).loesung], [0, 1]);
+  assert.match(fehler({ ...gut, szene: 'mond' }).join(), /szene/);
+  assert.match(fehler({ ...gut, suche: ['fuchs'] }).join(), /nicht in der Szene/);
+  assert.match(fehler({ ...gut, figuren: [gut.figuren[0], { bild: 'hase', feld: 0 }, gut.figuren[2]] }).join(), /selben Feld/);
+  assert.match(fehler({ ...gut, figuren: [gut.figuren[0], { bild: 'igel', feld: 9 }, gut.figuren[2]] }).join(), /feld: 0 bis 8/);
+  assert.match(fehler({ ...gut, figuren: [{ bild: 'hase', feld: 0 }, { bild: 'igel', feld: 1 }, { bild: 'igel', feld: 2 }] }).join(), /versteckt/);
+  assert.match(fehler({ ...gut, figuren: [gut.figuren[0], { bild: 'hase', feld: 1 }, { bild: 'hase', feld: 2 }] }).join(), /nicht gesucht/);
+  const s = Aufgaben.schritte({ ...gut, satz: 'x', vorlage: 'schatten' })[0];
+  assert.equal(s.zeige[0].stil, 'schatten');
+  assert.equal(s.optionen[0].versteck, true);
+  assert.equal(s.optionen[1].versteck, false);
+});
+
+test('aufdecken: jedes Bild genau zweimal, nicht alle nebeneinander', () => {
+  assert.deepEqual(fehler({ art: 'aufdecken', karten: ['hase', 'igel', 'hase', 'igel'] }), []);
+  assert.match(fehler({ art: 'aufdecken', karten: ['hase', 'hase', 'igel', 'igel'] }).join(), /nebeneinander/);
+  assert.match(fehler({ art: 'aufdecken', karten: ['hase', 'igel', 'hase', 'hase'] }).join(), /Karten \(soll genau 2\)/);
+  assert.match(fehler({ art: 'aufdecken', karten: ['hase', 'igel', 'hase'] }).join(), /Paare/);
+});
+
+test('weggenommen: weg ist dabei und genau einmal unter den Optionen', () => {
+  const gut = { art: 'weggenommen', frage: 'y', dinge: ['apfel', 'banane', 'birne'], weg: 'banane', optionen: ['kirschen', 'banane', 'zitrone'] };
+  assert.deepEqual(fehler(gut), []);
+  assert.match(fehler({ ...gut, weg: 'kirschen' }).join(), /nicht unter den Bildern/);
+  assert.match(fehler({ ...gut, optionen: ['kirschen', 'zitrone'] }).join(), /genau einmal/);
+  assert.match(fehler({ ...gut, dinge: ['apfel', 'banane', 'kobold'] }).join(), /Knopf/);
+  assert.match(fehler({ ...gut, frage: '' }).join(), /frage fehlt/);
+  const [a, b] = Aufgaben.schritte({ ...gut, satz: 'x' });
+  assert.equal(a.optionen[0].bild, 'kobold');
+  assert.equal(b.satz, 'y');
+  assert.equal(b.zeige[1].luecke, true);
+  assert.equal(b.optionen[b.richtig].bild, 'banane');
+});
+
+test('turm: vom größten zum kleinsten, nicht schon geordnet', () => {
+  const gut = { art: 'turm', bild: 'teddy', stufen: [0.5, 0.75, 1], anordnung: [0, 2, 1] };
+  assert.deepEqual(fehler(gut), []);
+  assert.deepEqual([...Aufgaben.pruefe({ ...gut, satz: 'x' }).loesung], [1, 2, 0]);
+  assert.match(fehler({ ...gut, anordnung: [2, 1, 0] }).join(), /schon der Größe nach/);
+  assert.match(fehler({ ...gut, stufen: [0.9, 0.95, 1] }).join(), /zu ähnlich/);
+  assert.match(fehler({ ...gut, stufen: [0.5, 1], anordnung: [1, 0] }).join(), /3 bis 4/);
+});
+
 test('Schritte für die App: richtige Antwort zeigt auf die Lösung', () => {
   const erg = pruefeAlle();
   for (const p of Object.values(erg.pakete)) {
     for (const l of p.levels) {
       for (const s of l.schritte) {
-        assert.ok(s.optionen.length >= 2 && s.optionen.length <= 4);
-        if (s.reihe) assert.equal(s.reihe.length, s.optionen.length);
-        else assert.ok(s.richtig >= 0 && s.richtig < s.optionen.length);
+        const n = s.optionen.length;
+        if (s.brett) assert.ok(n >= 3 && n <= 8);
+        else if (s.typ === 'anschauen') assert.equal(n, 1);
+        else assert.ok(n >= 2 && n <= 4);
+        if (s.reihe) assert.equal(s.reihe.length, n);
+        else if (s.alle) assert.ok(s.alle.length >= 1 && s.alle.length < n && s.alle.every((i) => i >= 0 && i < n));
+        else if (s.paare) assert.equal(s.paare.length * 2, n);
+        else assert.ok(s.richtig >= 0 && s.richtig < n);
       }
     }
   }

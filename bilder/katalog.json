@@ -1,7 +1,7 @@
 {
   "_erklaerung": [
     "Bilder-Sammlung: jedes Bild mit Merkmalen. Die Prüfung (werkzeuge/pruefe.mjs) entscheidet damit, ob eine Aufgabe eindeutig ist.",
-    "quelle: erzeugt (Beschreibung in bilder/motive.json, Dateien in bilder/erzeugt/) oder eigen:<name> (selbst gezeichnet in web/kern/bilder.js).",
+    "quelle: erzeugt (Beschreibung in bilder/motive.json, Dateien in bilder/erzeugt/).",
     "name: mit Artikel, für die Anleitung. art: tier | wesen (Fantasie-Wesen) | essen | pflanze | ding | form.",
     "farbe: die Farbe, die ein Kind sofort nennt, sonst null (bunt oder unklar). Nur rot, blau, gelb, gruen, orange, braun, grau, rosa, weiss, lila, schwarz.",
     "bewegt: schwimmt | fliegt | laeuft, nur wenn eindeutig, sonst null (Ente, Frosch, Schnecke …).",
@@ -43,7 +43,7 @@
     "fee":           { "name": "die Fee",            "quelle": "erzeugt", "art": "wesen", "farbe": null,    "bewegt": "fliegt",   "gehoert": ["zauberstab"] },
     "zauberer":      { "name": "der Zauberer",       "quelle": "erzeugt", "art": "wesen", "farbe": null,    "bewegt": "laeuft",   "gehoert": ["kristallkugel"] },
     "meerjungfrau":  { "name": "die Meerjungfrau",   "quelle": "erzeugt", "art": "wesen", "farbe": null, "bewegt": "schwimmt", "gehoert": ["welle"] },
-    "kobold":        { "name": "der Fehler-Kobold",  "quelle": "eigen:kobold",   "art": "wesen", "farbe": null,    "bewegt": "laeuft",   "gehoert": ["pilz"] },
+    "kobold":        { "name": "der Fehler-Kobold",  "quelle": "erzeugt",   "art": "wesen", "farbe": null,    "bewegt": "laeuft",   "gehoert": ["pilz"] },
 
     "apfel":         { "name": "der Apfel",          "quelle": "erzeugt", "art": "essen", "farbe": "rot" },
     "gruener-apfel": { "name": "der grüne Apfel",    "quelle": "erzeugt", "art": "essen", "farbe": "gruen" },

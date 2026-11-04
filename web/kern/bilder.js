@@ -7,7 +7,6 @@
 //
 // Die Tiere und Dinge kommen aus bilder/erzeugt/ (siehe bilder/erzeugt/HERKUNFT.md), viewBox 0 0 512 512.
 // Selbst gezeichnet im selben weichen Stil (ohne schwarze Ränder, Ränder in einer dunkleren Farbe), viewBox 0 0 72 72:
-//   kobold (der Fehler-Kobold)
 //   form-<kreis|dreieck|viereck|stern|herz>-<rot|blau|gelb|gruen>
 //   socke-<uni|streifen|punkte|herzen>-<rot|blau|gelb|gruen>
 (function (g) {
@@ -78,27 +77,8 @@
     return s;
   }
 
-  // Der Fehler-Kobold (wie in der Werkstatt der großen Schwester): lieb und frech, nie gruselig
-  const K = { haut: '#7bd67b', mantel: '#9b5bd4', gold: '#fcd53f', auge: '#402a32' };
-  const KOBOLD = '<g transform="translate(1 0) scale(0.7)">' +
-    '<path d="M22 40 L3 25 L27 31 Z M78 40 L97 25 L73 31 Z"' + flaeche(K.haut, 2.6) + '/>' +
-    '<ellipse cx="50" cy="67" rx="25" ry="22"' + flaeche(K.mantel, 2.8) + '/>' +
-    glanz('M32 58 C36 50 44 47 50 47 C42 51 37 56 35 64 Z') +
-    '<ellipse cx="37" cy="90" rx="8" ry="5.5"' + flaeche(K.haut, 2.4) + '/><ellipse cx="63" cy="90" rx="8" ry="5.5"' + flaeche(K.haut, 2.4) + '/>' +
-    '<circle cx="50" cy="42" r="25"' + flaeche(K.haut, 2.8) + '/>' +
-    glanz('M31 34 C34 25 42 21 49 21 C41 25 36 30 34 38 Z') +
-    '<path d="M27 31 C29 5 71 5 73 31 C62 24 38 24 27 31 Z"' + flaeche(K.mantel, 2.6) + '/>' +
-    '<circle cx="79" cy="9" r="6"' + flaeche(K.gold, 2.2) + '/><path d="M70 22 L77 13" fill="none"' + rand(dunkel(K.mantel), 2.6) + '/>' +
-    '<ellipse cx="41" cy="42" rx="6" ry="6.5" fill="#fff"/><ellipse cx="59" cy="42" rx="6" ry="6.5" fill="#fff"/>' +
-    '<circle cx="42.5" cy="43" r="3.4" fill="' + K.auge + '"/><circle cx="57.5" cy="43" r="3.4" fill="' + K.auge + '"/>' +
-    '<circle cx="43.6" cy="41.8" r="1.1" fill="#fff"/><circle cx="58.6" cy="41.8" r="1.1" fill="#fff"/>' +
-    '<path d="M39 54 C45 61 55 61 61 54" fill="none"' + rand(K.auge, 2.8) + '/>' +
-    '<path d="M46 57 L48 61 L50 57.5" fill="#fff"/>' +
-    '<circle cx="33" cy="51" r="3.5" fill="#ff8fb1" opacity="0.6" class="glanz"/><circle cx="67" cy="51" r="3.5" fill="#ff8fb1" opacity="0.6" class="glanz"/></g>';
-
   function eigenesInneres(id) {
     let m;
-    if (id === 'kobold') return KOBOLD;
     if ((m = /^form-(\w+)-(\w+)$/.exec(id)) && FORMEN[m[1]] && FARBEN[m[2]]) return FORMEN[m[1]](FARBEN[m[2]]);
     if ((m = /^socke-(\w+)-(\w+)$/.exec(id)) && MUSTER_NAMEN[m[1]] && FARBEN[m[2]]) return socke(m[1], m[2]);
     return null;
@@ -136,11 +116,8 @@
     const eigen = eigenesInneres(id);
     if (eigen !== null) {
       let inner = eigen;
-      if (stil === 'umriss') {
-        inner = zuUmriss(eigen);
-        // beim Kobold die Pupillen dunkel lassen
-        if (id === 'kobold') inner = inner.replace(/<circle cx="(42\.5|57\.5)" cy="43" r="3\.4" fill="#fff"/g, '<circle cx="$1" cy="43" r="3.4" fill="' + TINTE + '"');
-      } else if (stil === 'schatten') inner = zuSchatten(eigen);
+      if (stil === 'umriss') inner = zuUmriss(eigen);
+      else if (stil === 'schatten') inner = zuSchatten(eigen);
       return '<svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"' + attr + '>' + inner + '</svg>';
     }
     const b = katalog[id];

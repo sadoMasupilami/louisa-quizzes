@@ -113,8 +113,8 @@ Merkmale, nach denen sortiert wird, heißen für das Kind: **Farbe**, **Form**, 
 
 ### 7.3 Bilder-Sammlung (`bilder/katalog.json`, `web/kern/bilder.js`)
 
-- Tiere, Fantasie-Wesen, Essen, Pflanzen und Dinge sind eigens erzeugt (weich, rund, freundlich), Beschreibungen in `bilder/motive.json`, Dateien in `bilder/erzeugt/`. Dazu vier Szenen fürs Suchbild (Wiese, Meer, Himmel, Zauberwald).
-- Selbst gezeichnet im selben weichen Stil (Ränder in einer dunkleren Farbe statt schwarz): der **Fehler-Kobold** (wie in der Werkstatt der großen Schwester), **Formen** `form-<kreis|dreieck|viereck|stern|herz>-<rot|blau|gelb|gruen>`, **Socken** `socke-<uni|streifen|punkte|herzen>-<farbe>`, Körbe, Höhle, Stern, Gesichter, Würfelpunkte.
+- Tiere, Fantasie-Wesen (auch der **Fehler-Kobold**), Essen, Pflanzen und Dinge sind eigens erzeugt (weich, rund, freundlich; Gesichter haben nur Tiere und Figuren), Beschreibungen in `bilder/motive.json`, Dateien in `bilder/erzeugt/`. Dazu vier Szenen fürs Suchbild (Wiese, Meer, Himmel, Zauberwald).
+- Selbst gezeichnet im selben weichen Stil (Ränder in einer dunkleren Farbe statt schwarz), weil die Aufgaben hier auf exakten Mustern und Farben beruhen: **Formen** `form-<kreis|dreieck|viereck|stern|herz>-<rot|blau|gelb|gruen>`, **Socken** `socke-<uni|streifen|punkte|herzen>-<farbe>`, Körbe, Höhle, Stern, Gesichter, Würfelpunkte.
 - Jedes Bild gibt es in drei Stilen: **Farbe**, **Umriss** (zum Anmalen, eigene Linienzeichnung), **Schatten** (aus der Form des Farbbilds, alle Flächen dunkel).
 - Jedes Bild hat **Merkmale**: `art` (tier, wesen, essen, pflanze, ding, form), `farbe` (nur wenn ein Kind sie sofort nennt, sonst leer), `bewegt` (schwimmt, fliegt, läuft, nur wenn eindeutig: Ente, Frosch, Schnecke haben keins), `frisst`, `gehoert`. Damit prüft der Build jede Aufgabe.
 

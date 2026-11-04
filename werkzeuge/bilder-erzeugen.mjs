@@ -26,20 +26,24 @@ if (!['farbe', 'umriss', 'szenen'].includes(art)) {
 const ENDE = `After generating, copy each image into the current directory under exactly the file names given, then list the files.
 Do not write code. Do not generate variations or extras. If you cannot generate images, say so plainly with the reason and stop.`;
 
-const STIL = `Shared style for all: a single friendly subject for a picture book for a 4-year-old; soft, rounded, chunky shapes; smooth 3D-like gradients with gentle shading and a subtle highlight; no black outlines; bright clean colours; centred, filling about 85 percent of a square canvas, whole subject visible and not cropped; no text, no ground, no cast shadow, no scene. Original designs only, not resembling any existing character. Background: fully transparent.`;
+const STIL = `Shared style for all: a single friendly subject for a picture book for a 4-year-old; soft, rounded, chunky shapes; smooth 3D-like gradients with gentle shading and a subtle highlight; no black outlines; bright clean colours; centred, filling about 85 percent of a square canvas, whole subject visible and not cropped; no text, no ground, no cast shadow, no scene. Only animals and characters may have a face: food, plants and objects must have no eyes, no mouth and no face at all. Original designs only, not resembling any existing character. Background: fully transparent.`;
 
 const UMRISS = `Turn each attached reference image into a colouring-page outline for a 4-year-old child:
 - Keep the same subject, same pose, same proportions, and the same position and size on the square canvas.
 - Bold, clean, uniform dark lines of about 2.5 percent of the canvas width, with rounded ends. Solid black lines only.
 - Pure white background and pure white inside every shape. No shading, no grey, no colour, no gradients, no hatching, no texture.
-- Keep it simple with large areas to colour in. Where the subject has a face, keep it clear and friendly: eyes with a solid dark pupil, nose and a smiling mouth. Leave out small details such as fur strokes and shine marks.
+- Keep it simple with large areas to colour in. Where the subject has a face, keep it clear and friendly: eyes with a solid dark pupil, nose and a smiling mouth. Do not add a face where the reference has none. Leave out small details such as fur strokes, shine marks, patterns on clothes, jewellery and single hair strands; a child must be able to colour every area with a thick crayon.
 - Closed outer contour. No text, no ground, no extra objects.`;
 
 const SZENE = `Shared style for all: a soft, calm, bright background for a picture book for a 4-year-old; smooth rounded shapes and gentle gradients in light, pastel colours; low detail and low contrast, because small figures will be placed on top; no animals, no people, no characters, no text; the whole square canvas filled edge to edge, no border. Nothing scary.`;
 
 function aufgaben() {
   if (art === 'farbe') {
-    return Object.entries(daten.motive).map(([id, text]) => ({ id, text, ziel: path.join(ROH, 'farbe', id + '.png'), datei: id + '.png' }));
+    return Object.entries(daten.motive).map(([id, text]) => {
+      // Optionale Vorlage (bilder/roh/vorlage/<id>.png), wenn eine Figur wiedererkennbar bleiben soll
+      const v = path.join(ROH, 'vorlage', id + '.png');
+      return { id, text, ziel: path.join(ROH, 'farbe', id + '.png'), datei: id + '.png', ...(fs.existsSync(v) ? { vorlage: v, vorlageName: 'vorlage-' + id + '.png' } : {}) };
+    });
   }
   if (art === 'szenen') {
     return Object.entries(daten.szenen).map(([id, text]) => ({ id, text, ziel: path.join(ROH, 'szene', id + '.png'), datei: id + '.png' }));
@@ -57,7 +61,7 @@ function prompt(gruppe) {
     return kopf + UMRISS + '\n\nFiles:\n' + gruppe.map((a) => '- ' + path.basename(a.vorlage) + ' becomes ' + a.datei).join('\n') + '\n\n' + ENDE;
   }
   const stil = art === 'farbe' ? STIL : SZENE;
-  return kopf + stil + '\n\nImages:\n' + gruppe.map((a, i) => (i + 1) + '. ' + a.datei + ': ' + a.text).join('\n') + '\n\n' + ENDE;
+  return kopf + stil + '\n\nImages:\n' + gruppe.map((a, i) => (i + 1) + '. ' + a.datei + ': ' + a.text + (a.vorlageName ? ' (reference: ' + a.vorlageName + ')' : '')).join('\n') + '\n\n' + ENDE;
 }
 
 // Ein Aufruf: legt seine Bilder in einem eigenen Ordner ab und verschiebt nur, was wirklich da ist
@@ -66,7 +70,7 @@ function lauf(gruppe) {
     const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'bilder-'));
     const a = ['exec', '--skip-git-repo-check', '--sandbox', 'workspace-write', '-C', ordner, prompt(gruppe)];
     for (const x of gruppe) {
-      if (x.vorlage) { fs.copyFileSync(x.vorlage, path.join(ordner, path.basename(x.vorlage))); a.push('-i', path.basename(x.vorlage)); }
+      if (x.vorlage) { const name = x.vorlageName || path.basename(x.vorlage); fs.copyFileSync(x.vorlage, path.join(ordner, name)); a.push('-i', name); }
     }
     const log = [];
     const p = spawn('codex', a, { cwd: ordner, stdio: ['ignore', 'pipe', 'pipe'] });

@@ -113,4 +113,4 @@ kind.beispiel.json               Vorlage für kind.json (lokal, nie einchecken)
 
 ## Lizenzen
 
-Bilder der Tiere und Dinge sowie die Szenen sind eigens für diese Werkstatt erzeugt (`bilder/erzeugt/HERKUNFT.md`). Schriften: Andika und Nunito, SIL Open Font License (`src/fonts/`). Fehler-Kobold, Formen, Socken, Körbe und Aufgaben-Bilder sind selbst gezeichnet.
+Bilder der Tiere und Dinge sowie die Szenen sind eigens für diese Werkstatt erzeugt (`bilder/erzeugt/HERKUNFT.md`). Schriften: Andika und Nunito, SIL Open Font License (`src/fonts/`). Formen, Socken, Körbe und Aufgaben-Bilder sind selbst gezeichnet.

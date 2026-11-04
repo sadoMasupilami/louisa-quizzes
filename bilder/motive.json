@@ -1,7 +1,8 @@
 {
   "_erklaerung": [
     "Beschreibung jedes Bildes für werkzeuge/bilder-erzeugen.mjs. Die Farbe hier muss zum Merkmal farbe in bilder/katalog.json passen.",
-    "Gesichter nur, wo es unten steht (Katze, Hund, Hase, Maus, Schwein): Schatten-Aufgaben vergleichen genau diese Köpfe. Alle anderen Tiere ganz."
+    "Gesichter nur, wo es unten steht (Katze, Hund, Hase, Maus, Schwein, Fuchs): Schatten-Aufgaben vergleichen genau diese Köpfe. Alle anderen Tiere ganz.",
+    "Gesichter haben nur Tiere und Figuren. Essen, Pflanzen und Dinge haben keines, damit „Tier oder Ding?“ eindeutig bleibt."
   ],
   "motive": {
     "katze": "the face and head only of a friendly orange tabby cat, looking straight ahead, smiling",
@@ -9,15 +10,15 @@
     "hase": "the face and head only of a friendly white and light grey rabbit with two long upright ears, looking straight ahead",
     "maus": "the face and head only of a friendly grey mouse with two big round ears, looking straight ahead",
     "igel": "a whole friendly brown hedgehog with soft rounded spines, side view",
-    "fuchs": "a whole friendly orange fox with a white chest and a big bushy tail, sitting, side view",
-    "baer": "a whole friendly round brown bear, sitting, front view",
+    "fuchs": "the face and head only of a friendly orange fox with a white muzzle and pointed ears, looking straight ahead",
+    "baer": "a whole real brown bear walking on all four legs, side view facing left, friendly, with small round ears and a natural animal look, not a toy",
     "schwein": "the face and head only of a friendly pink pig with a round snout, looking straight ahead",
     "schaf": "a whole friendly fluffy white sheep with a dark face, side view",
     "pferd": "a whole friendly brown horse with a dark mane and no horn, standing, side view facing left",
     "elefant": "a whole friendly grey elephant with big ears and a curled trunk, side view",
     "giraffe": "a whole friendly yellow giraffe with brown patches and a very long neck, side view",
     "affe": "a whole friendly brown monkey with a cream face and a curly tail, sitting, front view",
-    "eichhoernchen": "a whole friendly brown squirrel with a big fluffy tail, sitting, side view",
+    "eichhoernchen": "a whole friendly dark chocolate-brown squirrel with a big fluffy brown tail and a cream belly, sitting, side view; clearly brown, not orange",
     "kueken": "a whole friendly round yellow baby chick, standing, front view",
     "frosch": "a whole friendly round green frog, sitting, front view",
     "schnecke": "a whole friendly brown snail with a round spiral shell, side view",
@@ -60,7 +61,7 @@
     "blatt": "one single green leaf with a soft curve",
     "stern": "one chunky yellow five-pointed star with rounded tips",
     "mond": "one yellow crescent moon",
-    "sonne": "one round yellow sun with a smiling face and short rounded rays",
+    "sonne": "one round yellow sun with short rounded rays",
     "wolke": "one puffy white cloud with a soft light grey-blue underside",
     "krone": "one golden yellow crown with three points and small coloured jewels",
     "zauberstab": "one black magic wand with a white tip and small yellow sparkles around the tip",
@@ -73,7 +74,7 @@
     "nest": "one empty round brown bird nest made of twigs",
     "geschenk": "one gift box with a red wrapping and a yellow ribbon and bow",
     "ballon": "one round shiny red balloon with a short curling string",
-    "teddy": "a whole friendly brown teddy bear, sitting, front view",
+    "teddy": "a whole soft toy teddy bear in light honey brown with a big red bow at the neck, visible stitching and a round patch on its tummy, sitting, front view",
     "haus": "one little house with a red roof, a door, a window and light walls",
     "pfote": "two black animal paw prints, one above the other, each with a pad and four round toes",
     "glitzer": "three chunky yellow four-pointed sparkle stars of different sizes",
@@ -85,7 +86,8 @@
     "zeigefinger": "one friendly child's hand with light skin, seen from the back, pointing straight up with the index finger",
     "augen": "a pair of two big friendly round eyes side by side, looking forward",
     "sprechen": "a friendly child's head in side view with light skin, mouth open and speaking, with three short curved sound lines in front of the mouth",
-    "klatschen": "two friendly child's hands with light skin, clapping together, with small lines showing movement"
+    "klatschen": "two friendly child's hands with light skin, clapping together, with small lines showing movement",
+    "kobold": "the friendly little goblin from the attached reference, the same character: green skin, big pointed ears, big eyes, a cheeky grin with one small tooth, a purple hat with a golden ball on a stalk, a round purple body and green feet; whole figure, front view; sweet and cheeky, never scary"
   },
   "szenen": {
     "wiese": "a wide sunny meadow: pale blue sky with two small clouds and a soft sun at the top third, gentle rolling green hills filling the rest, a few tiny flowers",

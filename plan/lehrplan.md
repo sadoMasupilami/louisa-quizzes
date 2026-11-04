@@ -113,14 +113,14 @@ Merkmale, nach denen sortiert wird, heißen für das Kind: **Farbe**, **Form**, 
 
 ### 7.3 Bilder-Sammlung (`bilder/katalog.json`, `web/kern/bilder.js`)
 
-- Tiere, Fantasie-Wesen, Essen, Pflanzen und Dinge aus **OpenMoji** (CC BY-SA 4.0), lokal in `bilder/openmoji/` (Farbe und Umriss).
-- Selbst gezeichnet im selben Stil: der **Fehler-Kobold** (wie in der Werkstatt der großen Schwester), **Formen** `form-<kreis|dreieck|viereck|stern|herz>-<rot|blau|gelb|gruen>`, **Socken** `socke-<uni|streifen|punkte|herzen>-<farbe>`, Körbe, Höhle, Stern, Gesichter, Würfelpunkte.
-- Jedes Bild gibt es in drei Stilen: **Farbe**, **Umriss** (zum Anmalen), **Schatten** (alle Flächen dunkel).
+- Tiere, Fantasie-Wesen, Essen, Pflanzen und Dinge aus **Fluent Emoji** von Microsoft (MIT-Lizenz), weicher Stil („Color“), lokal in `bilder/fluent/`. Menschen-Figuren (Fee, Zauberer, Meerjungfrau) im Hautton „Light“.
+- Selbst gezeichnet im selben weichen Stil (Ränder in einer dunkleren Farbe statt schwarz): der **Fehler-Kobold** (wie in der Werkstatt der großen Schwester), **Formen** `form-<kreis|dreieck|viereck|stern|herz>-<rot|blau|gelb|gruen>`, **Socken** `socke-<uni|streifen|punkte|herzen>-<farbe>`, Körbe, Höhle, Stern, Gesichter, Würfelpunkte.
+- Jedes Bild gibt es in drei Stilen: **Farbe**, **Umriss** (zum Anmalen, aus der flachen Fluent-Variante), **Schatten** (alle Flächen dunkel).
 - Jedes Bild hat **Merkmale**: `art` (tier, wesen, essen, pflanze, ding, form), `farbe` (nur wenn ein Kind sie sofort nennt, sonst leer), `bewegt` (schwimmt, fliegt, läuft, nur wenn eindeutig: Ente, Frosch, Schnecke haben keins), `frisst`, `gehoert`. Damit prüft der Build jede Aufgabe.
 
 ### 7.4 Farben und Größen auf den Blättern
 
-- Nur gut unterscheidbare Farben (rot, gelb, blau, grün wie in OpenMoji). Wo Farbe die Aufgabe ist, steht „in Farbe drucken“ bei der Vorbereitung.
+- Nur gut unterscheidbare Farben (rot, gelb, blau, grün wie in Fluent Emoji). Wo Farbe die Aufgabe ist, steht „in Farbe drucken“ bei der Vorbereitung.
 - Bilder mindestens **2,5 cm**, verkleinerte Bilder in Größen-Aufgaben mindestens 1,2 cm. Ausschneide-Karten mindestens **5 cm**, gerade Schnitte, gemeinsame dicke Schneidelinien. Gitterfelder (ab Block C) mindestens 4 cm.
 - Mengen als **Punkte** wie am Würfel, nicht als Ziffern.
 

@@ -99,7 +99,7 @@ for (const [k, p] of Object.entries(PAKETE)) {
     await warteAufStand(page, 'start');
     const kachel = page.locator('.kachel[data-paket="' + k + '"]');
     await expect(kachel.locator('.sterne > div')).toHaveCount(p.levels.length);
-    const leer = await kachel.locator('.sterne path[fill="#fff"]').count();
+    const leer = await kachel.locator('.sterne svg.leer').count();
     expect(leer).toBe(0);
   });
 
@@ -126,7 +126,7 @@ test('Für Erwachsene: Rechenfrage, Fortschritt löschen', async ({ page }) => {
   await expect(page.locator('.overlay .loeschen')).toHaveCount(0);
   await page.locator('.overlay input').fill(String(+a + +b));
   await page.locator('.overlay .ok').tap();
-  await expect(page.locator('.overlay')).toContainText('OpenMoji');
+  await expect(page.locator('.overlay')).toContainText('Fluent Emoji');
   await page.locator('.overlay .loeschen').tap();
   await page.locator('.overlay .loeschen').tap();
   await expect(page.locator('.overlay')).toBeHidden();

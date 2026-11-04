@@ -113,7 +113,7 @@ Ein druckbarer Guide plus eine kleine Web-App, mit dem ich mit meiner jüngeren 
   - die Aufgaben-Bilder (anmalen, verbinden, einkreisen, aufkleben, zeigen, sagen, zuhören)
   - die Pfeile und die vier Seiten-Bilder für Wege
   - die Befehls-Karten für den Körper (hüpfen, klatschen, stampfen, drehen, hinsetzen, aufstehen, winken)
-  - eine **Bilder-Sammlung** (Tiere, Fantasie-Wesen, Futter, Dinge, Formen) im selben freundlichen Stil: **OpenMoji** (frei lizenziert, CC BY-SA 4.0, mit Lizenzhinweis), lokal eingebunden. Jedes Bild gibt es in Farbe und als Umriss zum Anmalen, dazu als Schatten. Was OpenMoji nicht hat (Formen, Socken mit Mustern, der Fehler-Kobold), wird im selben Stil selbst gezeichnet. Keine Fotos, keine Figuren aus Filmen.
+  - eine **Bilder-Sammlung** (Tiere, Fantasie-Wesen, Futter, Dinge, Formen) im selben freundlichen Stil: **Fluent Emoji** von Microsoft im weichen Stil (frei lizenziert, MIT, mit Lizenzhinweis), lokal eingebunden. (Erst war OpenMoji geplant, das war zu stilisiert.) Jedes Bild gibt es in Farbe und als Umriss zum Anmalen, dazu als Schatten. Was Fluent nicht hat (Formen, Socken mit Mustern, der Fehler-Kobold), wird im selben Stil selbst gezeichnet. Keine Fotos, keine Figuren aus Filmen.
 - **Farben:** nur gut unterscheidbare Grundfarben (rot, blau, gelb, grün), zusätzlich mit einem Muster oder einer Form unterscheidbar, damit es auch bei Farbschwäche und schlechtem Drucker klappt.
 
 ## 7. Bildschirm-Teil: Web-App auf GitHub Pages

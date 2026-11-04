@@ -18,17 +18,28 @@ test('alle Aufgaben im Repo sind in Ordnung', () => {
 test('Bilder-Sammlung: jedes Bild hat Farbe, Umriss und Schatten', () => {
   assert.deepEqual([...pruefeBilder()], []);
   for (const id of Bilder.alle()) {
-    for (const stil of ['farbe', 'umriss', 'schatten']) assert.match(Bilder.svg(id, { stil }), /^<svg[^>]*viewBox="0 0 72 72"/);
+    for (const stil of ['farbe', 'umriss', 'schatten']) assert.match(Bilder.svg(id, { stil }), /^<svg[^>]*viewBox="0 0 [\d.]+ [\d.]+"/);
   }
   assert.equal(Bilder.merkmale('form-kreis-rot').form, 'kreis');
   assert.equal(Bilder.merkmale('socke-punkte-blau').muster, 'punkte');
   assert.equal(Bilder.merkmale('gibtsnicht'), null);
 });
 
-test('Schatten enthält keine Farben mehr', () => {
-  const s = Bilder.svg('einhorn', { stil: 'schatten' });
-  const farben = new Set((s.match(/(?:fill|stroke)="#[0-9a-f]+"/gi) || []).map((x) => x.split('"')[1].toLowerCase()));
-  assert.deepEqual([...farben], ['#3b3d4f']);
+const farbenIn = (s) => [...new Set((s.match(/(?:fill|stroke)="#[0-9a-f]+"/gi) || []).map((x) => x.split('"')[1].toLowerCase()))].sort();
+const beispiele = () => Bilder.alle().concat(['kobold', 'form-kreis-rot', 'socke-punkte-blau']);
+
+test('Schatten enthält keine Farben mehr, Umriss nur Weiß und Tinte', () => {
+  for (const id of beispiele()) {
+    assert.deepEqual(farbenIn(Bilder.svg(id, { stil: 'schatten' })), ['#3b3d4f'], id + ' (Schatten)');
+    const u = farbenIn(Bilder.svg(id, { stil: 'umriss' }));
+    assert.ok(u.every((f) => ['#fff', '#ffffff', '#1f2340'].includes(f)), id + ' (Umriss): ' + u.join(' '));
+  }
+});
+
+test('ids in den Farbbildern sind eindeutig (beginnen mit dem Bildnamen)', () => {
+  for (const id of Bilder.alle()) {
+    for (const m of Bilder.svg(id).matchAll(/\sid="([^"]+)"/g)) assert.ok(m[1].startsWith(id + '-'), id + ': id ' + m[1]);
+  }
 });
 
 test('sortieren: Ding in zwei Körben oder in keinem wird erkannt', () => {

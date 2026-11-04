@@ -25,7 +25,7 @@ Eine Datei pro Einheit. Dieselben Aufgaben gehen an die Blätter und an die Web-
 - Felder pro Aufgabenart: siehe Kopf von `web/kern/aufgaben.js`. Was „eindeutig“ heißt: `plan/lehrplan.md` Abschnitt 7.6.
 - Prüfen: `node werkzeuge/pruefe.mjs --bericht` (löst alles und zeigt die Lösungen).
 
-Neue Bilder: in `bilder/katalog.json` eintragen (mit Merkmalen), dann einmal `node werkzeuge/bilder-holen.mjs <openmoji-paket>`.
+Neue Bilder: in `bilder/katalog.json` eintragen (mit Merkmalen), dann einmal `node werkzeuge/bilder-holen.mjs <fluentui-emoji-repo>` (Anleitung im Kopf der Datei).
 Eine neue Aufgabenart: Prüfer und Schritte in `web/kern/aufgaben.js`, Darstellung am Blatt in `src/components.js` (`KOERPER`), Test in `tests/kern.test.mjs`.
 
 ## 2. Die Einheit schreiben (`src/einheiten/NN-titel.html`, in `src/buch.json` eintragen)

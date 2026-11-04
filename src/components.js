@@ -61,7 +61,7 @@
       return '<div class="klebe-koerbe">' + a.koerbe.map((k, i) =>
         '<div class="klebe-korb"><div class="flaeche"><div class="lsg flex lsg-bilder">' +
         a.dinge.filter((d) => a.loesung[d] === i).map((d) => bild(d)).join('') + '</div></div>' +
-        '<div class="korb-bild" data-klein>' + sym.korb(k.farbe || 'weiss', k.etikett) + '</div></div>').join('') + '</div>';
+        '<div class="korb-bild" data-klein>' + sym.korb(k.farbe || 'braun', k.etikett) + '</div></div>').join('') + '</div>';
     },
 
     ausmalen(a, el) {
@@ -91,7 +91,7 @@
       if (a.korb) {
         return '<div class="kobold-korb"><div class="inhalt">' +
           a.dinge.map((d, i) => box(bild(d, { stil }) + (i === a.loesung ? RING : ''), mm)).join('') + '</div>' +
-          '<div class="korb-bild" data-klein>' + sym.korb(a.korb.farbe || 'weiss', a.korb.etikett) + '</div></div>';
+          '<div class="korb-bild" data-klein>' + sym.korb(a.korb.farbe || 'braun', a.korb.etikett) + '</div></div>';
       }
       return '<div class="reihe">' + a.dinge.map((d, i) => box(bild(d, { stil }) + (i === a.loesung ? RING : ''), mm)).join('') + '</div>';
     },
@@ -348,7 +348,7 @@
       }
       // Bildgrößen
       for (const b of s.querySelectorAll('svg.bild-svg')) {
-        if (b.closest('.lsg') || !sichtbar(b)) continue;
+        if (b.closest('.lsg, .tun') || !sichtbar(b)) continue; // Aufgaben-Bilder im Kästchen sind Symbole, keine Bilder zum Erkennen
         let min;
         if (b.ownerSVGElement) {
           // verschachteltes SVG (z. B. beim Verbinden): Größe aus width/height in Einheiten des äußeren SVG

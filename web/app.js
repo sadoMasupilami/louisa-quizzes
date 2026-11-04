@@ -169,7 +169,7 @@
       '<p>Diese App gehört zur Schau- und Spiel-Werkstatt (Guide zum Ausdrucken). Sie ist ein kurzer Bonus: höchstens 5 Minuten, gemeinsam, ohne Ton. Du sagst die Aufgabe (der kleine graue Satz), dein Kind tippt.</p>' +
       '<div class="zeile"><button class="knopf-text loeschen">Fortschritt löschen</button><button class="knopf-text hell zu">Zurück</button></div>' +
       '<p><small>Die Sterne bleiben nur in diesem Browser. Die App sammelt nichts und lädt nichts aus dem Internet nach.</small></p>' +
-      '<p><small>Bilder: OpenMoji, das Open-Source-Emoji-Projekt (openmoji.org), Lizenz CC BY-SA 4.0. Der Fehler-Kobold, die Formen, die Socken und die Knöpfe sind selbst gezeichnet. Version ' + (window.WERKSTATT_VERSION || '') + '</small></p></div>';
+      '<p><small>Bilder: Fluent Emoji von Microsoft (github.com/microsoft/fluentui-emoji), MIT-Lizenz. Der Fehler-Kobold, die Formen, die Socken und die Knöpfe sind selbst gezeichnet. Version ' + (window.WERKSTATT_VERSION || '') + '</small></p></div>';
     overlay.querySelector('.loeschen').addEventListener('click', (e) => {
       if (e.target.dataset.sicher) { speichere({}); schliessen(); route(); return; }
       e.target.dataset.sicher = '1';

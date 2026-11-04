@@ -93,7 +93,7 @@ AUFTRAG.md                       Auftrag mit allen Wünschen und Entscheidungen
 plan/lehrplan.md                 Plan für 20 Einheiten, Begriffsliste, Aufgaben-Bilder, Bilder, Regeln
 vorlagen/AUTOREN-LEITFADEN.md    wie man eine Einheit schreibt, alle Bausteine, Datenformat
 bilder/katalog.json              Bilder-Sammlung mit Merkmalen
-bilder/openmoji/                 OpenMoji-Bilder (Farbe und Umriss, CC BY-SA 4.0, siehe HERKUNFT.md)
+bilder/fluent/                   Fluent-Emoji-Bilder (Farbe, Umriss, Schatten; MIT-Lizenz, siehe HERKUNFT.md)
 raetsel/eN.json                  Aufgaben und Web-Levels pro Einheit (eine Datenquelle für Papier und App)
 src/buch.json                    Reihenfolge der Teile im Buch
 src/rahmen/                      Titel, Inhalt, Einleitung, Hallo-Seite, Sammelpass, Rückmeldebogen, Gerätetest
@@ -112,4 +112,4 @@ kind.beispiel.json               Vorlage für kind.json (lokal, nie einchecken)
 
 ## Lizenzen
 
-Bilder der Tiere und Dinge: [OpenMoji](https://openmoji.org), CC BY-SA 4.0 (`bilder/openmoji/LICENSE.txt`). Schriften: Andika und Nunito, SIL Open Font License (`src/fonts/`). Fehler-Kobold, Formen, Socken, Körbe und Aufgaben-Bilder sind selbst gezeichnet.
+Bilder der Tiere und Dinge: [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) von Microsoft, MIT-Lizenz (`bilder/fluent/LICENSE.txt`). Schriften: Andika und Nunito, SIL Open Font License (`src/fonts/`). Fehler-Kobold, Formen, Socken, Körbe und Aufgaben-Bilder sind selbst gezeichnet.

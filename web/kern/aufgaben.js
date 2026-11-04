@@ -236,7 +236,7 @@
     if (NUR_PAPIER.includes(a.art)) throw new Error('Aufgabenart ' + a.art + ' gibt es nur am Papier');
     const bild = (id, stil, gross) => ({ bild: id, stil: stil || 'farbe', gross: gross || 1 });
     if (a.art === 'sortieren') {
-      const koerbe = a.koerbe.map((k) => ({ korb: { farbe: k.farbe || 'weiss', etikett: k.etikett || null } }));
+      const koerbe = a.koerbe.map((k) => ({ korb: { farbe: k.farbe || 'braun', etikett: k.etikett || null } }));
       return a.dinge.map((id) => ({ zeige: [bild(id)], optionen: koerbe, richtig: e.loesung[id], wohin: 'korb' }));
     }
     if (a.art === 'groesse') {

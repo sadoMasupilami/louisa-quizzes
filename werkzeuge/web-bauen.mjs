@@ -36,7 +36,7 @@ const kopiere = (rel, ziel) => fs.copyFileSync(path.join(WEB, rel), path.join(SI
 for (const d of ['index.html', 'app.css', 'app.js', 'manifest.webmanifest']) kopiere(d);
 for (const d of fs.readdirSync(path.join(WEB, 'icons'))) kopiere('icons/' + d);
 for (const d of ['bilder.js', 'symbole.js']) kopiere('kern/' + d);
-fs.copyFileSync(path.join(WURZEL, 'bilder', 'openmoji', 'LICENSE.txt'), path.join(SITE, 'LIZENZ-BILDER.txt'));
+fs.copyFileSync(path.join(WURZEL, 'bilder', 'fluent', 'LICENSE.txt'), path.join(SITE, 'LIZENZ-BILDER.txt'));
 
 const pakete = JSON.stringify(erg.pakete);
 const daten = bilderDatenJs([...ids]) + 'window.WERKSTATT_PAKETE = ' + pakete.replace(/</g, '\\u003c') + ';\n';

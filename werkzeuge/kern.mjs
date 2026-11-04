@@ -8,20 +8,19 @@ import { fileURLToPath } from 'node:url';
 export const WURZEL = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const KERN_DATEIEN = ['bilder.js', 'symbole.js', 'aufgaben.js'];
 
-// Katalog und SVG-Dateien der Bilder-Sammlung
+// Katalog und SVG-Dateien der Bilder-Sammlung (bilder/fluent/<stil>/<id>.svg)
 export function bilderDaten() {
   const katalog = JSON.parse(fs.readFileSync(path.join(WURZEL, 'bilder', 'katalog.json'), 'utf8')).bilder;
   const svg = {};
-  const ordner = path.join(WURZEL, 'bilder', 'openmoji');
-  for (const b of Object.values(katalog)) {
-    if (!b.quelle.startsWith('openmoji:')) continue;
-    const hex = b.quelle.slice(9);
+  const ordner = path.join(WURZEL, 'bilder', 'fluent');
+  for (const [id, b] of Object.entries(katalog)) {
+    if (!b.quelle.startsWith('fluent:')) continue;
     const lies = (sub) => {
-      const f = path.join(ordner, sub, hex + '.svg');
-      if (!fs.existsSync(f)) throw new Error('Bild fehlt: bilder/openmoji/' + sub + '/' + hex + '.svg (node werkzeuge/bilder-holen.mjs)');
+      const f = path.join(ordner, sub, id + '.svg');
+      if (!fs.existsSync(f)) throw new Error('Bild fehlt: bilder/fluent/' + sub + '/' + id + '.svg (node werkzeuge/bilder-holen.mjs)');
       return fs.readFileSync(f, 'utf8').trim();
     };
-    svg[hex] = { farbe: lies('farbe'), umriss: lies('umriss') };
+    svg[id] = { farbe: lies('farbe'), umriss: lies('umriss'), schatten: lies('schatten') };
   }
   return { katalog, svg };
 }
@@ -32,9 +31,8 @@ export function bilderDatenJs(nur) {
   if (nur) {
     const k = {};
     for (const id of nur) if (d.katalog[id]) k[id] = d.katalog[id];
-    const hexe = new Set(Object.values(k).filter((b) => b.quelle.startsWith('openmoji:')).map((b) => b.quelle.slice(9)));
     d.katalog = k;
-    d.svg = Object.fromEntries(Object.entries(d.svg).filter(([h]) => hexe.has(h)));
+    d.svg = Object.fromEntries(Object.entries(d.svg).filter(([id]) => k[id]));
   }
   return 'window.BILDER_DATEN = ' + JSON.stringify(d).replace(/</g, '\\u003c') + ';\n';
 }
